@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Auth from './pages/Auth';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Auth from "./pages/Auth";
+import MLModel from "./components/MLModel";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -16,16 +16,16 @@ function App() {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/me', {
-        credentials: 'include' // Important for cookies/sessions
+      const response = await fetch("http://127.0.0.1:8000/me", {
+        credentials: "include", // Important for cookies/sessions
       });
-      
+
       if (response.ok) {
         const userData = await response.json();
         setUser(userData);
       }
     } catch (error) {
-      console.error('Auth check failed:', error);
+      console.error("Auth check failed:", error);
     } finally {
       setLoading(false);
     }
@@ -37,12 +37,11 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      
-      await fetch('http://127.0.0.1:8000/logout', { method: 'POST' });
-      
+      await fetch("http://127.0.0.1:8000/logout", { method: "POST" });
+
       setUser(null);
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error("Logout failed:", error);
     }
   };
 
@@ -62,6 +61,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+          <Route path="/mlmodel" element={<MLModel />} />
         </Routes>
       </div>
     </Router>
