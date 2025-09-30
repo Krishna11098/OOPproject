@@ -37,6 +37,7 @@ model.load_state_dict(state_dict)
 model.to(device)
 model.eval()
 
+
 # Prediction function
 def predict_image(img_path):
     img = Image.open(img_path).convert("RGB")

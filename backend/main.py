@@ -6,7 +6,6 @@ from sqlalchemy.orm import Session
 from database import SessionLocal, engine
 import models
 from auth import hash_password, verify_password 
-
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
