@@ -1,0 +1,20 @@
+Test Accuracy: 0.8546
+
+Classification Report:
+                                 precision    recall  f1-score   support
+
+        Downy_mildew_on_lettuce     0.7568    0.9180    0.8296        61
+      Powdery_mildew_on_lettuce     0.7895    0.7143    0.7500        42
+     Septoria_Blight_on_lettuce     0.9265    0.8289    0.8750        76
+Wilt_and_leaf_blight_on_lettuce     0.9574    0.9375    0.9474        48
+
+                       accuracy                         0.8546       227
+                      macro avg     0.8575    0.8497    0.8505       227
+                   weighted avg     0.8621    0.8546    0.8550       227
+
+
+Confusion Matrix:
+[[56  3  2  0]
+ [10 30  2  0]
+ [ 6  5 63  2]
+ [ 2  0  1 45]]

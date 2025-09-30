@@ -1,0 +1,22 @@
+Test Accuracy: 0.9800
+
+Classification Report:
+                        precision    recall  f1-score   support
+
+      CCI_Caterpillars     1.0000    1.0000    1.0000        89
+          CCI_Leaflets     1.0000    1.0000    1.0000        91
+WCLWD_DryingofLeaflets     0.9664    0.9829    0.9746       117
+      WCLWD_Flaccidity     1.0000    0.9608    0.9800       102
+       WCLWD_Yellowing     0.9417    0.9604    0.9510       101
+
+              accuracy                         0.9800       500
+             macro avg     0.9816    0.9808    0.9811       500
+          weighted avg     0.9804    0.9800    0.9801       500
+
+
+Confusion Matrix:
+[[ 89   0   0   0   0]
+ [  0  91   0   0   0]
+ [  0   0 115   0   2]
+ [  0   0   0  98   4]
+ [  0   0   4   0  97]]
