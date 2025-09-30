@@ -1,0 +1,20 @@
+Test Accuracy: 0.9952
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      Blight     1.0000    1.0000    1.0000        45
+  Fresh Leaf     1.0000    0.9836    0.9917        61
+Mosaic Virus     0.9815    1.0000    0.9907        53
+        Rust     1.0000    1.0000    1.0000        51
+
+    accuracy                         0.9952       210
+   macro avg     0.9954    0.9959    0.9956       210
+weighted avg     0.9953    0.9952    0.9952       210
+
+
+Confusion Matrix:
+[[45  0  0  0]
+ [ 0 60  1  0]
+ [ 0  0 53  0]
+ [ 0  0  0 51]]
