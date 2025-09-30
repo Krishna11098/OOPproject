@@ -1,0 +1,26 @@
+{
+  "bercak ungu": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP"
+  ],
+  "embun bulu": [
+    "Metalaxyl 8% + Mancozeb 64% WP",
+    "Fosetyl-Aluminium 80% WP",
+    "Cymoxanil 8% + Mancozeb 64% WP"
+  ],
+  "hawar daun": [
+    "Chlorothalonil 75% WP",
+    "Mancozeb 75% WP",
+    "Copper Hydroxide 77% WP"
+  ],
+  "moler": [
+    "Carbendazim 50% WP",
+    "Thiophanate Methyl 70% WP",
+    "Triazole fungicides (e.g., Propiconazole 25% EC)"
+  ],
+  "sehat": [
+    "Tidak perlu perlakuan",
+    "Praktik budidaya sehat (pemupukan seimbang, sanitasi kebun)"
+  ]
+}

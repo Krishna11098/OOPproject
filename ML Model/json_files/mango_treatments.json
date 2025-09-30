@@ -1,0 +1,45 @@
+{
+  "Anthracnose": [
+    "Carbendazim 50% WP",
+    "Copper Oxychloride 50% WP",
+    "Propiconazole 25% EC",
+    "Thiophanate Methyl 70% WP"
+  ],
+  "Bacterial Canker": [
+    "Streptomycin Sulphate 9% + Tetracycline 1% WP",
+    "Copper Hydroxide 77% WP",
+    "Bordeaux Mixture (Copper Sulphate + Lime)"
+  ],
+  "Cutting Weevil": [
+    "Chlorpyrifos 20% EC",
+    "Quinalphos 25% EC",
+    "Carbaryl 50% WP"
+  ],
+  "Die Back": [
+    "Copper Oxychloride 50% WP",
+    "Bordeaux Mixture (1%)",
+    "Propiconazole 25% EC (for wound dressing)"
+  ],
+  "Gall Midge": [
+    "Imidacloprid 17.8% SL",
+    "Dimethoate 30% EC",
+    "Lambda-cyhalothrin 5% EC"
+  ],
+  "Healthy": [
+    "No treatment required",
+    "Optional preventive spray: Copper Oxychloride 50% WP"
+  ],
+  "Powdery Mildew": [
+    "Wettable Sulphur 80% WP",
+    "Dinocap 48% EC (Karathane)",
+    "Hexaconazole 5% SC",
+    "Thiophanate Methyl 70% WP"
+  ],
+  "Sooty Mould": [
+    "Imidacloprid 17.8% SL",
+    "Dimethoate 30% EC",
+    "Potassium Carbonate 1% spray"
+  ],
+  "Unlabeled": ["No chemical suggested", "Further diagnosis required"],
+  "VN normal leaf": ["No treatment required"]
+}
