@@ -1,11 +1,26 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from dotenv import load_dotenv
+import os
 
-URL_DATABASE = 'mysql+pymysql://root:__(yourpw)__@localhost:3306/__(yourdb)__'
+# Load environment variables from .env file
+load_dotenv()
 
-engine = create_engine(URL_DATABASE)
+# Get database URL from environment variable or use default
+DATABASE_URL = os.getenv(
+    "DATABASE_URL"
+)
+
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try: 
+        yield db
+    finally:
+        db.close()

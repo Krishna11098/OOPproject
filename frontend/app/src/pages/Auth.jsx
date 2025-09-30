@@ -28,36 +28,34 @@ function Auth({ onLogin }) {
 
     try {
       if (isLogin) {
-  // Login API call
-  const formDataObj = new FormData();
-  formDataObj.append('username', formData.username);
-  formDataObj.append('password', formData.password);
+        // Login API call - using original FormData approach
+        const formDataObj = new FormData();
+        formDataObj.append('username', formData.username);
+        formDataObj.append('password', formData.password);
 
-  const response = await fetch('http://127.0.0.1:8000/login', {
-    method: 'POST',
-    body: formDataObj,
-    credentials: 'include'
-  });
+        const response = await fetch('http://localhost:8000/login', {
+          method: 'POST',
+          body: formDataObj,
+          credentials: 'include'
+        });
 
-  if (response.ok) {
-    const userData = await response.json();
-    console.log('Login successful:', userData);
-
-    // Directly set user data
-    onLogin(userData);
-    navigate('/');
-  } else {
-    const errorData = await response.json();
-    setError(errorData.message || 'Login failed');
-  }
-} else {
-        // Signup API call
+        if (response.ok) {
+          const userData = await response.json();
+          console.log('Login successful:', userData);
+          onLogin(userData);
+          navigate('/');
+        } else {
+          const errorData = await response.json();
+          setError(errorData.message || 'Login failed');
+        }
+      } else {
+        // Signup API call - using original FormData approach
         const formDataObj = new FormData();
         formDataObj.append('username', formData.username);
         formDataObj.append('email', formData.email);
         formDataObj.append('password', formData.password);
 
-        const response = await fetch('http://127.0.0.1:8000/register', {
+        const response = await fetch('http://localhost:8000/register', {
           method: 'POST',
           body: formDataObj,
           credentials: 'include'
