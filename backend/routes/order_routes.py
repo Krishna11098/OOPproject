@@ -79,6 +79,22 @@ async def create_order(
             )
         
         print(f"📦 Creating order in database...")
+        
+        # Calculate estimated delivery date (7-10 business days)
+        from datetime import timedelta
+        import random
+        
+        # Add 7-10 business days for delivery
+        business_days_to_add = random.randint(7, 10)
+        current_date = datetime.now()
+        delivery_date = current_date + timedelta(days=business_days_to_add)
+        
+        # Skip weekends (optional enhancement)
+        while delivery_date.weekday() >= 5:  # 5 = Saturday, 6 = Sunday
+            delivery_date += timedelta(days=1)
+        
+        print(f"📦 Estimated delivery date: {delivery_date.strftime('%Y-%m-%d')}")
+        
         # Create order in database
         new_order = DBOrder(
             user_id=current_user.id,
@@ -86,7 +102,8 @@ async def create_order(
             order_type=order_data.order_type,
             status="pending",
             shipping_address=order_data.shipping_address,
-            payment_status=order_data.payment_status
+            payment_status=order_data.payment_status,
+            delivery_date=delivery_date  # ✅ Now setting delivery date
         )
         
         db.add(new_order)
@@ -109,7 +126,15 @@ async def create_order(
         return {
             "success": True,
             "message": "Order created successfully",
-            "order_id": new_order.id
+            "order_id": new_order.id,
+            "order_details": {
+                "status": new_order.status,
+                "payment_status": new_order.payment_status,
+                "shipping_address": new_order.shipping_address,
+                "order_date": new_order.order_date.isoformat(),
+                "estimated_delivery": new_order.delivery_date.isoformat() if new_order.delivery_date else None,
+                "total_amount": float(new_order.total_amount)
+            }
         }
         
     except Exception as e:

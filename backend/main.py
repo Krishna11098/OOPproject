@@ -17,9 +17,10 @@ load_dotenv()
 
 # Import product routes
 try:
-    from product_routes import product_router
-except ImportError:
-    print("Product routes not available - install required dependencies")
+    from routes.product_routes import product_router
+    print("Product routes imported successfully")
+except ImportError as e:
+    print(f"Product routes not available: {e}")
     product_router = None
 
 # Import new route modules

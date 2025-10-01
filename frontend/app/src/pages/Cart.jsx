@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import AddressForm from '../components/AddressForm';
 import './Cart.css';
 
 function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onUserLogin }) {
@@ -8,6 +9,9 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
   const [loadingItems, setLoadingItems] = useState(new Set());
   const [removingItems, setRemovingItems] = useState(new Set());
   const [showRemoveConfirm, setShowRemoveConfirm] = useState(null);
+  const [showAddressForm, setShowAddressForm] = useState(false);
+  const [shippingAddress, setShippingAddress] = useState(null);
+  const [addressDetails, setAddressDetails] = useState(null);
   const navigate = useNavigate();
 
   // Load cart only when user is present (on mount or user change)
@@ -125,6 +129,20 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
       return;
     }
 
+    // Show address form instead of direct checkout
+    setShowAddressForm(true);
+  };
+
+  const handleAddressSubmit = (formattedAddress, addressData) => {
+    setShippingAddress(formattedAddress);
+    setAddressDetails(addressData);
+    setShowAddressForm(false);
+    
+    // Now proceed with actual checkout
+    proceedWithPayment(formattedAddress);
+  };
+
+  const proceedWithPayment = async (addressString) => {
     setIsCheckingOut(true);
     
     try {
@@ -160,7 +178,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
           items: orderItems,
           total_amount: calculateTotal(),
           order_type: "cart",
-          shipping_address: "Default Address",
+          shipping_address: addressString,
           payment_status: "pending"
         })
       });
@@ -542,6 +560,27 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
           </div>
         </div>
       </div>
+
+      {/* Address Form Modal */}
+      {showAddressForm && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>📍 Enter Shipping Address</h2>
+              <button 
+                className="modal-close" 
+                onClick={() => setShowAddressForm(false)}
+              >
+                ✕
+              </button>
+            </div>
+            <AddressForm 
+              onAddressSubmit={handleAddressSubmit}
+              initialAddress={addressDetails || {}}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

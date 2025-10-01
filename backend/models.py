@@ -183,6 +183,27 @@ class ProductReview(Base):
     user = relationship("User")
     product = relationship("Product")
 
+# User addresses model for saving multiple addresses
+class UserAddress(Base):
+    __tablename__ = 'user_addresses'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    full_name = Column(String(100), nullable=False)
+    phone = Column(String(20), nullable=False)
+    address_line1 = Column(String(255), nullable=False)
+    address_line2 = Column(String(255))
+    city = Column(String(100), nullable=False)
+    state = Column(String(100), nullable=False)
+    pincode = Column(String(10), nullable=False)
+    landmark = Column(String(255))
+    is_default = Column(Boolean, default=False)
+    address_type = Column(String(50), default='home')  # home, office, other
+    created_at = Column(DateTime, default=datetime.utcnow)
+    
+    # Relationships
+    user = relationship("User")
+
 
 
 

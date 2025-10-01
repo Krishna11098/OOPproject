@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from typing import List, Optional
 import models
 from database import SessionLocal
-from product_system import (
+from routes.product_system import (
     ProductFactory, ProductService, 
     FertilizerCreate, PesticideCreate, SeedCreate, EquipmentCreate,
     ProductResponse, CartItemCreate, CartItemResponse

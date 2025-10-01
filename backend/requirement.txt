@@ -5,15 +5,22 @@ uvicorn[standard]==0.30.6
 # Database
 sqlalchemy==2.0.35
 pymysql==1.1.1       # or psycopg2-binary for PostgreSQL
+cryptography          # Required for MySQL authentication
 
 # Pydantic (validation)
 pydantic==2.9.2
 pydantic-settings==2.3.3   # for env/config management
 
-# CORS, Security, Password Hashing
+# Security & Authentication
 python-multipart==0.0.9
-passlib[bcrypt]==1.7.4
+bcrypt==5.0.0               # Direct bcrypt for password hashing
 python-jose==3.3.0
+
+# Payment Processing
+razorpay==2.0.0             # For payment gateway integration
+
+# HTTP Requests
+requests                    # Required by razorpay
 
 # Environment variables
 python-dotenv==1.0.1

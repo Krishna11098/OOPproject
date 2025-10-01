@@ -17,37 +17,17 @@ function App() {
 
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  // Check if user is logged in on app load
-  useEffect(() => {
-    checkAuthStatus();
-  }, []);
-
-  const checkAuthStatus = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/me', {
-        credentials: 'include' // Important for cookies/sessions
-      });
-      
-      if (response.ok) {
-        const userData = await response.json();
-        setUser(userData);
-        // Load cart when user is authenticated
-        loadUserCart();
-      } else if (response.status === 401) {
-        // User not authenticated - this is normal, don't log as error
-        setUser(null);
-      } else {
-        console.error('Auth check failed with status:', response.status);
-      }
-    } catch (error) {
-      console.error('Auth check network error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // Define loadUserCart first, before useEffect
   const loadUserCart = useCallback(async () => {
     console.log('loadUserCart called');
+    
+    // Only load cart if user is logged in
+    if (!user) {
+      console.log('No user logged in, skipping cart load');
+      setCartItems([]);
+      return;
+    }
+    
     try {
       const response = await fetch('http://localhost:8000/cart/items', {
         credentials: 'include'
@@ -63,7 +43,9 @@ function App() {
           setCartItems([]);
         }
       } else if (response.status === 401) {
-        // User not authenticated - this is normal, don't log as error
+        // User not authenticated - clear user state if session expired
+        console.log('Session expired, clearing user state');
+        setUser(null);
         setCartItems([]);
       } else {
         console.error('Failed to load cart with status:', response.status);
@@ -74,13 +56,55 @@ function App() {
       // Continue without cart data
       setCartItems([]);
     }
-  }, []); // No dependencies since it only uses setCartItems (which is stable)
+  }, [user]); // Add user as dependency
+
+  const checkAuthStatus = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/me', {
+        credentials: 'include' // Important for cookies/sessions
+      });
+      
+      if (response.ok) {
+        const userData = await response.json();
+        if (userData.error) {
+          // Backend returned error message (like "Not authenticated")
+          setUser(null);
+        } else {
+          setUser(userData);
+        }
+      } else if (response.status === 401) {
+        // User not authenticated - this is normal, don't log as error
+        setUser(null);
+      } else {
+        console.error('Auth check failed with status:', response.status);
+        setUser(null);
+      }
+    } catch (error) {
+      console.error('Auth check network error:', error);
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Check if user is logged in on app load
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+  // Load cart when user state changes
+  useEffect(() => {
+    if (user) {
+      loadUserCart();
+    } else {
+      setCartItems([]);
+    }
+  }, [user, loadUserCart]);
 
   const handleLogin = (userData) => {
     console.log('User logged in:', userData);
     setUser(userData);
-    // Load cart after login
-    loadUserCart();
+    // Cart will be loaded automatically by the useEffect that watches user state
   };
 
   const handleLogout = async () => {
