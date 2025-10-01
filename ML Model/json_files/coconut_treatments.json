@@ -1,0 +1,28 @@
+{
+  "CCI_Caterpillars": [
+    "Remove and destroy infested leaflets",
+    "Malathion 50% EC @ 2 ml/L water",
+    "Dimethoate 30% EC @ 1 ml/L water",
+    "Neem oil 3% (or neem-based formulation 300 ppm) for repeated, safer use"
+  ],
+  "CCI_Leaflets": [
+    "Bordeaux mixture 1% spray to crown and spindle at ~40-day interval",
+    "Copper Oxychloride 0.5% spray for leaf/crown rot complexes",
+    "Sanitation: remove decayed leaf tissue; avoid injuries to crown"
+  ],
+  "WCLWD_DryingofLeaflets": [
+    "Integrated root wilt package: improve nutrition and irrigation",
+    "Manage associated pests (rhinoceros beetle, red palm weevil) and leaf rot",
+    "Regular manuring and sanitation to restore palm vigor"
+  ],
+  "WCLWD_Flaccidity": [
+    "Treat as root wilt symptom: no single curative chemical",
+    "Support with balanced NPK and organic manures",
+    "Prevent secondary leaf rot with Bordeaux 1% or COC 0.5% sprays on crown"
+  ],
+  "WCLWD_Yellowing": [
+    "Nutrient support: Urea 1–2 kg/palm soil application; foliar urea 2% if needed",
+    "Potassium supplementation (MOP/K2SO4) as per schedule",
+    "Control concurrent pests to reduce stress and improve recovery"
+  ]
+}

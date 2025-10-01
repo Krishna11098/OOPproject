@@ -1,0 +1,32 @@
+Test Accuracy: 0.9552
+
+Classification Report:
+                                          precision    recall  f1-score   support
+
+                               Unlabeled     1.0000    1.0000    1.0000         3
+                          brown_eye_spot     0.9237    0.9909    0.9561       110
+               brown_eye_spot leaf_miner     0.9412    0.8889    0.9143        18
+     brown_eye_spot leaf_miner leaf_rust     1.0000    0.5000    0.6667         2
+                brown_eye_spot leaf_rust     0.9231    0.8182    0.8675        44
+brown_eye_spot leaf_rust red_spider_mite     1.0000    1.0000    1.0000         2
+                              leaf_miner     1.0000    1.0000    1.0000       118
+                    leaf_miner leaf_rust     0.5000    1.0000    0.6667         2
+                               leaf_rust     0.9506    0.9059    0.9277        85
+                         red_spider_mite     0.9841    1.0000    0.9920        62
+
+                                accuracy                         0.9552       446
+                               macro avg     0.9223    0.9104    0.8991       446
+                            weighted avg     0.9574    0.9552    0.9548       446
+
+
+Confusion Matrix:
+[[  3   0   0   0   0   0   0   0   0   0]
+ [  0 109   1   0   0   0   0   0   0   0]
+ [  0   2  16   0   0   0   0   0   0   0]
+ [  0   0   0   1   0   0   0   0   1   0]
+ [  0   5   0   0  36   0   0   0   3   0]
+ [  0   0   0   0   0   2   0   0   0   0]
+ [  0   0   0   0   0   0 118   0   0   0]
+ [  0   0   0   0   0   0   0   2   0   0]
+ [  0   2   0   0   3   0   0   2  77   1]
+ [  0   0   0   0   0   0   0   0   0  62]]

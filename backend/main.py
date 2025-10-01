@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Depends, Form, HTTPException
+from fastapi import FastAPI, Request, Depends, Form, HTTPException, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
 from typing import Annotated
@@ -133,7 +133,10 @@ async def logout(request: Request):
 async def read_me(request: Request, db: Session = Depends(get_db)):
     user_id = request.session.get("user_id")
     if not user_id:
-        return {"error": "Not authenticated"}
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Not authenticated"
+        )
     user = db.query(models.User).filter(models.User.id == user_id).first()
     return {"id": user.id, "username": user.username, "email": user.email}
 

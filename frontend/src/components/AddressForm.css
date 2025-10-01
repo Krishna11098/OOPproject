@@ -1,0 +1,119 @@
+/* AddressForm Component Styles */
+.address-form {
+  padding: 2rem;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.address-form h3 {
+  color: #2d5016;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e9ecef;
+}
+
+.address-form input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.address-form input:focus {
+  outline: none;
+  border-color: #4d7c2d;
+  box-shadow: 0 0 0 3px rgba(77, 124, 45, 0.1);
+}
+
+.address-form input::placeholder {
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row input {
+  margin-bottom: 0;
+}
+
+.address-form button[type="submit"] {
+  width: 100%;
+  background: linear-gradient(135deg, #4d7c2d, #2d5016);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.address-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #2d5016, #1a2f0c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
+}
+
+.address-form button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(45, 80, 22, 0.2);
+}
+
+/* Three column grid for city, state, pincode */
+.form-row:has(input[placeholder*="City"]) {
+  grid-template-columns: 1fr 1fr 0.8fr;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .address-form {
+    padding: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .form-row:has(input[placeholder*="City"]) {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row input {
+    margin-bottom: 1rem;
+  }
+  
+  .address-form h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .address-form {
+    padding: 1rem;
+  }
+  
+  .address-form input {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .address-form button[type="submit"] {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
