@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import Announcements from './pages/Announcements';
 import Blog from './pages/Blog';
 import Marketplace from './pages/Marketplace';
 import Cart from './pages/Cart';
@@ -278,6 +279,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home user={user} />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+          <Route path="/announcements" element={<Announcements user={user} />} />
           <Route path="/blog" element={<Blog user={user}/>} />
           <Route path="/marketplace" element={<Marketplace user={user} addToCart={addToCart} isAddingToCart={isAddingToCart} />} />
           <Route path="/cart" element={<Cart user={user} cartItems={cartItems} updateQuantity={updateCartQuantity} removeFromCart={removeFromCart} onCartSync={syncCart} onUserLogin={setUser} />} />
