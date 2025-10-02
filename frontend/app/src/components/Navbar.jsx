@@ -13,7 +13,7 @@ function Navbar({ user, onLogout }) {
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
           <a href="#upload" className="nav-link">Upload</a>
-          <a href="#blog" className="nav-link">Blog</a>
+          <Link to="/blog" className="nav-link">Blog</Link>
           <a href="#market" className="nav-link">Marketplace</a>
           <a href="#announcements" className="nav-link">Announcements</a>
           
