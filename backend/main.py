@@ -1,6 +1,7 @@
 # main.py
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request, Depends, Form, HTTPException, status, Path
-from fastapi.responses import HTMLResponse, RedirectResponse,JSONResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse
 from starlette.middleware.sessions import SessionMiddleware
 from typing import Annotated, List
 from sqlalchemy.orm import Session
@@ -8,13 +9,15 @@ from database import SessionLocal, engine
 import models
 import os
 from dotenv import load_dotenv
-from auth import hash_password, verify_password 
+from auth import hash_password, verify_password
 from pydantic import BaseModel
 
 
 load_dotenv()
 
 # Pydantic models for request bodies
+
+
 class UserOut(BaseModel):
     id: int
     username: str
@@ -23,16 +26,20 @@ class UserOut(BaseModel):
     class Config:
         orm_mode = True
 
+
 class BlogCreate(BaseModel):
     title: str
     content: str
+
 
 class BlogUpdate(BaseModel):
     title: str
     content: str
 
+
 class CommentCreate(BaseModel):
     text: str
+
 
 # Import product routes
 try:
@@ -63,18 +70,17 @@ app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
-    SessionMiddleware, 
+    SessionMiddleware,
     secret_key=os.getenv('SESSION_SECRET', 'secretsuperstar-change-this')
 )
 
 # session middleware (keeps login in session cookie)
 
 # CORS for React dev server at port 5173
-from fastapi.middleware.cors import CORSMiddleware
 
 # Get CORS origins from environment variable
 cors_origins = os.getenv(
-    'CORS_ORIGINS', 
+    'CORS_ORIGINS',
     'http://localhost:5173,http://localhost:5174,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,http://127.0.0.1:3000'
 ).split(',')
 
@@ -104,9 +110,12 @@ def get_db():
     finally:
         db.close()
 
+
 db_dependency = Annotated[Session, Depends(get_db)]
 
 # Helper function to get current user
+
+
 def get_current_user(request: Request, db: Session = Depends(get_db)):
     user_id = request.session.get("user_id")
     if not user_id:
@@ -115,6 +124,7 @@ def get_current_user(request: Request, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
     return user
+
 
 @app.post("/register")
 async def register(db: Session = Depends(get_db), request: Request = None, username: str = Form(...), password: str = Form(...), email: str = Form(...)):
@@ -135,7 +145,8 @@ async def register(db: Session = Depends(get_db), request: Request = None, usern
 
 @app.post("/login")
 async def login(db: Session = Depends(get_db), request: Request = None, username: str = Form(...), password: str = Form(...)):
-    user = db.query(models.User).filter(models.User.username == username).first()
+    user = db.query(models.User).filter(
+        models.User.username == username).first()
     if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=400, detail="Invalid credentials")
     request.session["user_id"] = user.id
@@ -171,7 +182,8 @@ async def create_blog(payload: BlogCreate, request: Request, db: db_dependency):
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
 
-    blog = models.Blog(title=payload.title, content=payload.content, user_id=user_id, likes=0, dislikes=0)
+    blog = models.Blog(title=payload.title, content=payload.content,
+                       user_id=user_id, likes=0, dislikes=0)
     db.add(blog)
     db.commit()
     db.refresh(blog)
@@ -202,7 +214,8 @@ async def list_blogs(db: db_dependency):
             "created_at": blog.created_at,
             "author": {"id": blog.author.id, "username": blog.author.username},
             "comments": [
-                {"id": c.id, "text": c.text, "created_at": c.created_at, "user": {"id": c.user.id, "username": c.user.username}}
+                {"id": c.id, "text": c.text, "created_at": c.created_at,
+                    "user": {"id": c.user.id, "username": c.user.username}}
                 for c in blog.comments
             ]
         })
@@ -210,7 +223,7 @@ async def list_blogs(db: db_dependency):
 
 
 @app.put("/blogs/{blog_id}")
-async def update_blog( db: db_dependency,blog_id: int = Path(...), payload: BlogUpdate = None, request: Request = None):
+async def update_blog(db: db_dependency, blog_id: int = Path(...), payload: BlogUpdate = None, request: Request = None):
     user_id = request.session.get("user_id")
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
@@ -267,7 +280,8 @@ async def like_blog(blog_id: int, request: Request, db: db_dependency):
 async def dislike_blog(blog_id: int, request: Request, db: db_dependency):
     user_id = request.session.get("user_id")
     if not user_id:
-        raise HTTPException(status_code=401, detail="Login required to dislike")
+        raise HTTPException(
+            status_code=401, detail="Login required to dislike")
 
     blog = db.query(models.Blog).filter(models.Blog.id == blog_id).first()
     if not blog:
@@ -290,7 +304,8 @@ async def add_comment(blog_id: int, payload: CommentCreate, request: Request, db
     if not blog:
         raise HTTPException(status_code=404, detail="Blog not found")
 
-    comment = models.Comment(content=payload.text, user_id=user_id, blog_id=blog_id)
+    comment = models.Comment(content=payload.text,
+                             user_id=user_id, blog_id=blog_id)
     db.add(comment)
     db.commit()
     db.refresh(comment)
@@ -319,6 +334,7 @@ async def get_comments(blog_id: int, db: db_dependency):
     ]
 # Product endpoints accessible without authentication (for marketplace browsing)
 
+
 @app.get("/products")
 async def get_products(
     db: Session = Depends(get_db),
@@ -329,19 +345,19 @@ async def get_products(
 ):
     """Get all products with optional filters"""
     query = db.query(models.Product).filter(models.Product.is_active == True)
-    
+
     if category:
         query = query.filter(models.Product.category == category)
-    
+
     if search:
         query = query.filter(
             models.Product.name.contains(search) |
             models.Product.title.contains(search) |
             models.Product.description.contains(search)
         )
-    
+
     products = query.offset(skip).limit(limit).all()
-    
+
     return {
         "products": [
             {
@@ -362,6 +378,7 @@ async def get_products(
         "total": len(products)
     }
 
+
 @app.get("/products/{product_id}")
 async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
     """Get detailed product information"""
@@ -369,10 +386,10 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
         models.Product.id == product_id,
         models.Product.is_active == True
     ).first()
-    
+
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
-    
+
     # Base product data
     product_data = {
         "id": product.id,
@@ -389,10 +406,11 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
         "review_count": product.review_count,
         "created_at": product.created_at
     }
-    
+
     # Add specific attributes based on product type
     if product.product_type == "fertilizer":
-        fertilizer = db.query(models.Fertilizer).filter(models.Fertilizer.id == product_id).first()
+        fertilizer = db.query(models.Fertilizer).filter(
+            models.Fertilizer.id == product_id).first()
         if fertilizer:
             product_data.update({
                 "npk_ratio": fertilizer.npk_ratio,
@@ -403,9 +421,10 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
                 "nutrients": fertilizer.nutrients,
                 "suitable_crops": fertilizer.suitable_crops
             })
-    
+
     elif product.product_type == "pesticide":
-        pesticide = db.query(models.Pesticide).filter(models.Pesticide.id == product_id).first()
+        pesticide = db.query(models.Pesticide).filter(
+            models.Pesticide.id == product_id).first()
         if pesticide:
             product_data.update({
                 "active_ingredient": pesticide.active_ingredient,
@@ -416,9 +435,10 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
                 "safety_period": pesticide.safety_period,
                 "dilution_ratio": pesticide.dilution_ratio
             })
-    
+
     elif product.product_type == "seed":
-        seed = db.query(models.Seed).filter(models.Seed.id == product_id).first()
+        seed = db.query(models.Seed).filter(
+            models.Seed.id == product_id).first()
         if seed:
             product_data.update({
                 "variety": seed.variety,
@@ -431,9 +451,10 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
                 "sunlight_requirement": seed.sunlight_requirement,
                 "water_requirement": seed.water_requirement
             })
-    
+
     elif product.product_type == "equipment":
-        equipment = db.query(models.Equipment).filter(models.Equipment.id == product_id).first()
+        equipment = db.query(models.Equipment).filter(
+            models.Equipment.id == product_id).first()
         if equipment:
             product_data.update({
                 "equipment_type": equipment.equipment_type,
@@ -445,5 +466,11 @@ async def get_product_detail(product_id: int, db: Session = Depends(get_db)):
                 "power_consumption": equipment.power_consumption,
                 "capacity": equipment.capacity
             })
-    
+
     return product_data
+
+
+@app.get("/announcements")
+async def get_announcements(db: Session = Depends(get_db)):
+    announcements = db.query(models.Announcement).all()
+    return announcements
