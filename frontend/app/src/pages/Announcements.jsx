@@ -2,30 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, Modal } from 'react-bootstrap';
 import './Announcements.css';
 const Announcements = () => {
-    // Sample announcements data
-    const initialAnnouncements = [
-        {
-            id: 1,
-            title: 'System Maintenance',
-            content: 'The system will be down for maintenance on Saturday from 2 AM to 5 AM.',
-            date: '2023-10-15',
-            author: 'Admin Team'
-        },
-        {
-            id: 2,
-            title: 'New Feature Release',
-            content: 'We are excited to announce our new dashboard features will be live next week!',
-            date: '2023-10-12',
-            author: 'Product Team'
-        },
-        {
-            id: 3,
-            title: 'Holiday Schedule',
-            content: 'Please note the office will be closed during the upcoming holidays.',
-            date: '2023-10-08',
-            author: 'HR Department'
+    const initialAnnouncements = async () => {
+        const response = await fetch('http://127.0.0.1:8000/announcements', {
+            method: 'GET',
+            credentials: 'include'
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    ];
+        return response.json();
+    };
 
     const [announcements, setAnnouncements] = useState(initialAnnouncements);
     const [openDialog, setOpenDialog] = useState(false);
