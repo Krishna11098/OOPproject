@@ -1,9 +1,33 @@
-fastapi
-uvicorn[standard]
-sqlalchemy
-pymysql
-passlib[bcrypt]
-python-multipart
-starlette
-itsdangerous
-python-dotenv
+# FastAPI and web framework dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+starlette==0.27.0
+
+# Database dependencies
+sqlalchemy==2.0.23
+pymysql==1.1.0
+cryptography==41.0.7
+
+# Authentication and security
+passlib[bcrypt]==1.7.4
+bcrypt==4.1.2
+python-dotenv==1.0.0
+
+# Form handling and validation
+pydantic==2.5.0
+python-multipart==0.0.6
+
+# CORS middleware
+# python-cors
+
+# ML and image processing dependencies (for mlmodel.py)
+torch
+torchvision
+Pillow
+
+# Payment integration
+razorpay==1.4.1
+
+# Additional utilities
+python-jose[cryptography]==3.3.0
+typing-extensions==4.8.0

@@ -321,6 +321,10 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*_env/
+*env/
+oopproject_env/
+virtualenv/
 
 # Spyder project settings
 .spyderproject
@@ -379,3 +383,41 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ================================================
+# PROJECT SPECIFIC ADDITIONS
+# ================================================
+
+# Database files
+*.db
+*.sqlite3
+agriculture.db
+
+# ML Models
+*.pth
+*.pkl
+*.joblib
+*.h5
+models/
+checkpoints/
+
+# Uploads and media
+uploads/
+static/uploads/
+media/
+
+# Backup files
+backups/
+*.sql
+*.dump
+
+# Razorpay logs
+payment_logs/
+razorpay_*.json
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+credentials/
+secrets/
