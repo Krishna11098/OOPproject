@@ -2,18 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, Modal } from 'react-bootstrap';
 import './Announcements.css';
 const Announcements = () => {
-    const initialAnnouncements = async () => {
-        const response = await fetch('http://127.0.0.1:8000/announcements', {
-            method: 'GET',
-            credentials: 'include'
-        });
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    };
-
-    const [announcements, setAnnouncements] = useState(initialAnnouncements);
+    const [announcements, setAnnouncements] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
     const [deleteId, setDeleteId] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
@@ -24,6 +13,27 @@ const Announcements = () => {
         date: '',
         author: ''
     });
+
+    // Fetch announcements from backend on mount
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/announcements', {
+                    method: 'GET',
+                    credentials: 'include'
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setAnnouncements(data);
+            } catch (error) {
+                console.error('Failed to fetch announcements:', error);
+                setAnnouncements([]);
+            }
+        };
+        fetchAnnouncements();
+    }, []);
 
     // Dialog handlers
     const handleOpenDeleteDialog = (id) => {

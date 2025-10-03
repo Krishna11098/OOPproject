@@ -15,7 +15,7 @@ function Navbar({ user, onLogout, cartItemCount = 0 }) {
           <a href="#upload" className="nav-link">Upload</a>
           <Link to="/marketplace" className="nav-link">Marketplace</Link>
           <Link to="/blog" className="nav-link">Blog</Link>
-          <a href="#announcements" className="nav-link">Announcements</a>
+          <Link to="/announcements" className="nav-link">Announcements</Link>
           
           <div className="auth-section">
             {user ? (
