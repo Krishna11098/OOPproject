@@ -12,7 +12,7 @@ function Navbar({ user, onLogout, cartItemCount = 0 }) {
         
         <div className="nav-links">
           <Link to="/" className="nav-link">Home</Link>
-          <a href="#upload" className="nav-link">Upload</a>
+          <a href="/upload" className="nav-link">Upload</a>
           <Link to="/marketplace" className="nav-link">Marketplace</Link>
           <Link to="/blog" className="nav-link">Blog</Link>
           <Link to="/announcements" className="nav-link">Announcements</Link>

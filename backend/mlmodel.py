@@ -34,8 +34,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 # Base paths (update these according to your actual folder structure)
-BASE_MODEL_PATH = "D:/OOPS Project/ayushman_new/ML Model/pth_files"
-BASE_JSON_PATH = "D:/OOPS Project/ayushman_new/ML Model/json_files"
+BASE_MODEL_PATH = "D:/OOPSPROJECT(KRISHNA)/ML Model/pth_files"
+BASE_JSON_PATH = "D:/OOPSPROJECT(KRISHNA)/ML Model/json_files"
 
 class PlantDiseasePredictor:
     def __init__(self):

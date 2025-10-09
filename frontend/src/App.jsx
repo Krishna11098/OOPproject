@@ -10,7 +10,7 @@ import Cart from './pages/Cart';
 import ItemDetail from './pages/ItemDetail';
 import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentFailure from './pages/PaymentFailure';
-
+import MLModel from './components/MLModel.jsx'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -286,6 +286,7 @@ function App() {
           <Route path="/item/:id" element={<ItemDetail user={user} addToCart={addToCart} isAddingToCart={isAddingToCart} />} />
           <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/failure" element={<PaymentFailure />} />
+          <Route path="/upload" element={<MLModel />} />
         </Routes>
       </div>
     </Router>

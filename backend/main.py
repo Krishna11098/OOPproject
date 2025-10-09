@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 from auth import hash_password, verify_password
 from pydantic import BaseModel
 
-
 load_dotenv()
 
 # Pydantic models for request bodies
@@ -69,10 +68,6 @@ app = FastAPI()
 # Create all database tables (including new product tables)
 models.Base.metadata.create_all(bind=engine)
 
-app.add_middleware(
-    SessionMiddleware,
-    secret_key=os.getenv('SESSION_SECRET', 'secretsuperstar-change-this')
-)
 
 # session middleware (keeps login in session cookie)
 
@@ -84,12 +79,25 @@ cors_origins = os.getenv(
     'http://localhost:5173,http://localhost:5174,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,http://127.0.0.1:3000'
 ).split(',')
 
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=cors_origins,  # Use specific origins instead of wildcard
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=cors_origins,  # Use specific origins instead of wildcard
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=os.getenv('SESSION_SECRET', 'secretsuperstar-change-this')
 )
 
 # Include product routes if available
@@ -150,6 +158,9 @@ async def login(db: Session = Depends(get_db), request: Request = None, username
     if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=400, detail="Invalid credentials")
     request.session["user_id"] = user.id
+    print("HI")
+    print(request.session["user_id"])
+    print("HI")
     return {"id": user.id, "username": user.username, "email": user.email}
 
 
@@ -214,7 +225,7 @@ async def list_blogs(db: db_dependency):
             "created_at": blog.created_at,
             "author": {"id": blog.author.id, "username": blog.author.username},
             "comments": [
-                {"id": c.id, "text": c.text, "created_at": c.created_at,
+                {"id": c.id, "text": c.content, "created_at": c.created_at,
                     "user": {"id": c.user.id, "username": c.user.username}}
                 for c in blog.comments
             ]

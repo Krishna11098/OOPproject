@@ -1,5 +1,5 @@
 # models.py
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime, func, Boolean, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, Text, DateTime, func, Boolean, Float, Date
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declared_attr
 from datetime import datetime
