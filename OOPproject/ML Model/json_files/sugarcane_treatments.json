@@ -1,0 +1,9 @@
+{
+  "Healthy": ["No treatment required"],
+  "RedRot": [
+    "Carbendazim 50% WP",
+    "Propiconazole 25% EC",
+    "Thiabendazole formulations"
+  ],
+  "RedRust": ["Mancozeb 75% WP", "Propiconazole 25% EC", "Hexaconazole 5% SC"]
+}

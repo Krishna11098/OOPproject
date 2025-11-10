@@ -1,0 +1,18 @@
+{
+  "alternaria alternata": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Carbendazim 50% WP",
+    "Azoxystrobin 23% SC"
+  ],
+  "cercospora nicotianae": [
+    "Copper Oxychloride 50% WP",
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Azoxystrobin 23% SC"
+  ],
+  "no cercospora nicotianae or alternaria alternata present": [
+    "No treatment required"
+  ],
+  "Unlabeled": ["Further diagnosis required"]
+}

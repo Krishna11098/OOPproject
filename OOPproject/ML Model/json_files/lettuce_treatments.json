@@ -1,0 +1,23 @@
+{
+  "Downy_mildew_on_lettuce": [
+    "Metalaxyl 8% + Mancozeb 64% WP",
+    "Fosetyl-Aluminium 80% WP",
+    "Cymoxanil 8% + Mancozeb 64% WP"
+  ],
+  "Powdery_mildew_on_lettuce": [
+    "Wettable Sulphur 80% WP",
+    "Hexaconazole 5% SC",
+    "Dinocap 48% EC",
+    "Thiophanate Methyl 70% WP"
+  ],
+  "Septoria_Blight_on_lettuce": [
+    "Chlorothalonil 75% WP",
+    "Mancozeb 75% WP",
+    "Copper Oxychloride 50% WP"
+  ],
+  "Wilt_and_leaf_blight_on_lettuce": [
+    "Carbendazim 50% WP",
+    "Thiophanate Methyl 70% WP",
+    "Copper Oxychloride 50% WP"
+  ]
+}

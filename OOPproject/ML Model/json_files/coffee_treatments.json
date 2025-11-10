@@ -1,0 +1,56 @@
+{
+  "brown_eye_spot": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Carbendazim 50% WP"
+  ],
+  "brown_eye_spot_leaf_miner": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Carbendazim 50% WP"
+  ],
+  "brown_eye_spot_leaf_miner_leaf_rust": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Carbendazim 50% WP"
+  ],
+  "brown_eye_spot_leaf_rust": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Carbendazim 50% WP"
+  ],
+  "brown_eye_spot_leaf_rust_red_spider_mite": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Carbendazim 50% WP"
+  ],
+  "leaf_miner": [
+    "Imidacloprid 17.8% SL",
+    "Thiamethoxam 25% WG",
+    "Acetamiprid 20% SP",
+    "Neem-based formulation 300 ppm"
+  ],
+  "leaf_miner_leaf_rust": [
+    "Imidacloprid 17.8% SL",
+    "Thiamethoxam 25% WG",
+    "Acetamiprid 20% SP",
+    "Neem-based formulation 300 ppm"
+  ],
+  "leaf_rust": [
+    "Urea (46% N) - 1% foliar spray",
+    "Zinc Sulphate 21% - 0.5% foliar spray",
+    "Ferrous Sulphate 19% - 0.5% foliar spray"
+  ],
+  "red_spider_mite": [
+    "Imidacloprid 17.8% SL",
+    "Thiamethoxam 25% WG",
+    "Acetamiprid 20% SP",
+    "Neem-based formulation 300 ppm"
+  ],
+  "Unlabeled": ["No treatment required"]
+}

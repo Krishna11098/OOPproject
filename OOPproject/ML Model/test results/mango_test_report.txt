@@ -1,0 +1,32 @@
+Test Accuracy: 0.9968
+
+Classification Report:
+                  precision    recall  f1-score   support
+
+     Anthracnose     0.9855    1.0000    0.9927        68
+Bacterial Canker     1.0000    1.0000    1.0000        82
+  Cutting Weevil     1.0000    1.0000    1.0000        72
+        Die Back     1.0000    1.0000    1.0000        81
+      Gall Midge     1.0000    0.9867    0.9933        75
+         Healthy     1.0000    1.0000    1.0000        75
+  Powdery Mildew     0.9877    1.0000    0.9938        80
+     Sooty Mould     1.0000    0.9859    0.9929        71
+       Unlabeled     1.0000    1.0000    1.0000         2
+  VN normal leaf     1.0000    1.0000    1.0000        11
+
+        accuracy                         0.9968       617
+       macro avg     0.9973    0.9973    0.9973       617
+    weighted avg     0.9968    0.9968    0.9968       617
+
+
+Confusion Matrix:
+[[68  0  0  0  0  0  0  0  0  0]
+ [ 0 82  0  0  0  0  0  0  0  0]
+ [ 0  0 72  0  0  0  0  0  0  0]
+ [ 0  0  0 81  0  0  0  0  0  0]
+ [ 1  0  0  0 74  0  0  0  0  0]
+ [ 0  0  0  0  0 75  0  0  0  0]
+ [ 0  0  0  0  0  0 80  0  0  0]
+ [ 0  0  0  0  0  0  1 70  0  0]
+ [ 0  0  0  0  0  0  0  0  2  0]
+ [ 0  0  0  0  0  0  0  0  0 11]]
