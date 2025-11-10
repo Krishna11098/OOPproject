@@ -1,0 +1,22 @@
+Test Accuracy: 0.7429
+
+Classification Report:
+              precision    recall  f1-score   support
+
+ bercak ungu     0.6000    0.6000    0.6000         5
+  embun bulu     1.0000    0.5455    0.7059        11
+  hawar daun     0.6667    0.8000    0.7273        10
+       moler     1.0000    1.0000    1.0000         7
+       sehat     0.4000    1.0000    0.5714         2
+
+    accuracy                         0.7429        35
+   macro avg     0.7333    0.7891    0.7209        35
+weighted avg     0.8133    0.7429    0.7480        35
+
+
+Confusion Matrix:
+[[3 0 1 0 1]
+ [1 6 3 0 1]
+ [1 0 8 0 1]
+ [0 0 0 7 0]
+ [0 0 0 0 2]]

@@ -1,0 +1,20 @@
+Test Accuracy: 0.7391
+
+Classification Report:
+                                                          precision    recall  f1-score   support
+
+                                               Unlabeled     1.0000    1.0000    1.0000         1
+                                    alternaria alternata     0.6250    0.7143    0.6667         7
+                                   cercospora nicotianae     0.5000    0.6000    0.5455         5
+no cercospora nicotianae or alternaria alternata present     1.0000    0.8000    0.8889        10
+
+                                                accuracy                         0.7391        23
+                                               macro avg     0.7812    0.7786    0.7753        23
+                                            weighted avg     0.7772    0.7391    0.7514        23
+
+
+Confusion Matrix:
+[[1 0 0 0]
+ [0 5 2 0]
+ [0 2 3 0]
+ [0 1 1 8]]

@@ -1,0 +1,20 @@
+{
+  "Blight": [
+    "Copper Oxychloride 0.3% spray",
+    "Mancozeb 75% WP",
+    "Sanitation: remove and destroy severely infected leaves"
+  ],
+  "Fresh Leaf": [
+    "No treatment required",
+    "Good hygiene and balanced fertilization"
+  ],
+  "Mosaic Virus": [
+    "Rogue/remove infected plants to stop spread",
+    "Vector control: Imidacloprid 17.8% SL or Thiamethoxam 25% WG"
+  ],
+  "Rust": [
+    "Wettable Sulphur 80% WP",
+    "Mancozeb 75% WP",
+    "Repeat at 10–14 day intervals if conducive conditions persist"
+  ]
+}

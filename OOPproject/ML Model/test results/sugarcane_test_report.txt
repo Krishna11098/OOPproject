@@ -1,0 +1,18 @@
+Test Accuracy: 1.0000
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     Healthy     1.0000    1.0000    1.0000         7
+      RedRot     1.0000    1.0000    1.0000         4
+     RedRust     1.0000    1.0000    1.0000        11
+
+    accuracy                         1.0000        22
+   macro avg     1.0000    1.0000    1.0000        22
+weighted avg     1.0000    1.0000    1.0000        22
+
+
+Confusion Matrix:
+[[ 7  0  0]
+ [ 0  4  0]
+ [ 0  0 11]]

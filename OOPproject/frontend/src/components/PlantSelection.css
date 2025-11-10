@@ -1,0 +1,76 @@
+.plant-selection-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.selection-header {
+  background: linear-gradient(135deg, #2e7d32, #4caf50);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.selection-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.selection-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.plant-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 25px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.plant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+  border-color: #4caf50;
+}
+
+.plant-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #388e3c;
+}
+
+.plant-name {
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .plant-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+  }
+
+  .selection-header h1 {
+    font-size: 2rem;
+  }
+
+  .plant-card {
+    padding: 20px 10px;
+  }
+}
