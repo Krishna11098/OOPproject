@@ -525,3 +525,5 @@ async def get_announcements(db: Session = Depends(get_db)):
         formatted_announcements.append(formatted_announcement)
     
     return formatted_announcements
+
+

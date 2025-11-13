@@ -22,6 +22,14 @@ class User(Base):
     comments = relationship(
         "Comment", back_populates="user", cascade="all, delete-orphan")
 
+class Admin(User):
+    __tablename__ = 'admins'
+    __mapper_args__ = {'polymorphic_identity': 'admin'}
+    
+    id = Column(Integer, ForeignKey('users.id'), primary_key=True)
+    admin_level = Column(Integer, default=1)
+    department = Column(String(100), nullable=True)
+    privileges = Column(String(200), default="manage_users,manage_blogs")
 
 class Blog(Base):
     __tablename__ = 'blogs'
