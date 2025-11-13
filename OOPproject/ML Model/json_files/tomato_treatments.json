@@ -1,0 +1,59 @@
+{
+  "Tomato__Bacterial_spot": [
+    "Copper Oxychloride 50% WP",
+    "Streptocycline 90% SP",
+    "Kasugamycin 3% SL",
+    "Mancozeb 75% WP"
+  ],
+  "Tomato__Early_blight": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Azoxystrobin 23% SC",
+    "Carbendazim 50% WP"
+  ],
+  "Tomato__healthy": [
+    "No treatment required"
+  ],
+  "Tomato__Late_blight": [
+    "Metalaxyl 8% + Mancozeb 64% WP",
+    "Dimethomorph 50% WP",
+    "Copper Oxychloride 50% WP",
+    "Cymoxanil 8% + Mancozeb 64% WP"
+  ],
+  "Tomato__Leaf_Mold": [
+    "Chlorothalonil 75% WP",
+    "Copper Oxychloride 50% WP",
+    "Azoxystrobin 23% SC",
+    "Mancozeb 75% WP"
+  ],
+  "Tomato__Septoria_leaf_spot": [
+    "Chlorothalonil 75% WP",
+    "Mancozeb 75% WP",
+    "Copper Hydroxide 77% WP",
+    "Azoxystrobin 23% SC"
+  ],
+  "Tomato__Spider_mites Two-spotted_spider_mite": [
+    "Fenpyroximate 5% EC",
+    "Spiromesifen 22.9% SC",
+    "Propargite 57% EC",
+    "Abamectin 1.9% EC"
+  ],
+  "Tomato__Target_Spot": [
+    "Chlorothalonil 75% WP",
+    "Mancozeb 75% WP",
+    "Azoxystrobin 23% SC",
+    "Tebuconazole 25% EC"
+  ],
+  "Tomato__Tomato_mosaic_virus": [
+    "Remove and destroy infected plants",
+    "Control insect vectors using Imidacloprid 17.8% SL",
+    "Avoid tobacco handling before touching plants",
+    "Use resistant varieties"
+  ],
+  "Tomato__Tomato_Yellow_Leaf_Curl_Virus": [
+    "Remove infected plants immediately",
+    "Spray Imidacloprid 17.8% SL or Thiamethoxam 25% WG",
+    "Use yellow sticky traps to control whiteflies",
+    "Grow virus-resistant cultivars"
+  ]
+}
