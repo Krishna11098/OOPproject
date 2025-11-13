@@ -1,0 +1,29 @@
+{
+  "BlackPoint": [
+    "Treat seeds with Tebuconazole 2% DS before sowing",
+    "Ensure proper grain drying and low moisture storage",
+    "Avoid delayed harvesting and maintain field hygiene",
+    "Use resistant wheat varieties"
+  ],
+  "FusariumFootRot": [
+    "Apply Carbendazim 50% WP as seed treatment",
+    "Use crop rotation with non-host crops",
+    "Avoid excessive nitrogen fertilizer",
+    "Improve soil drainage to reduce humidity"
+  ],
+  "HealthyLeaf": [
+    "No treatment required"
+  ],
+  "LeafBlight": [
+    "Spray Mancozeb 75% WP or Chlorothalonil 75% WP",
+    "Use resistant cultivars",
+    "Destroy crop residues to reduce inoculum",
+    "Ensure adequate crop spacing for air flow"
+  ],
+  "WheatBlast": [
+    "Apply Trifloxystrobin 25% + Tebuconazole 50% WG",
+    "Avoid late sowing and excess nitrogen application",
+    "Use certified blast-resistant seed varieties",
+    "Destroy infected crop residues after harvest"
+  ]
+}
