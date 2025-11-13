@@ -394,7 +394,7 @@ __marimo__/
 agriculture.db
 
 # ML Models
-*.pth
+# *.pth
 *.pkl
 *.joblib
 *.h5

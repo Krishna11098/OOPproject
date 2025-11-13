@@ -1,0 +1,13 @@
+{
+  "name": "oopproject",
+  "private": true,
+  "scripts": {
+    "start:backend1": "cd backend && uvicorn main:app --reload",
+    "start:backend2": "cd backend && uvicorn mlmodel:app --reload --port 3000",
+    "start:frontend": "cd frontend && npm run dev",
+    "start": "concurrently \"npm run start:backend1\" \"npm run start:frontend\" \"npm run start:backend2\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

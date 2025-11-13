@@ -14,7 +14,7 @@ bcrypt==4.1.2
 python-dotenv==1.0.0
 
 # Form handling and validation
-pydantic==2.5.0
+pydantic
 python-multipart==0.0.6
 
 # CORS middleware
