@@ -1,0 +1,41 @@
+{
+  "Bacteria": [
+    "Copper Oxychloride 50% WP",
+    "Streptocycline 90% SP",
+    "Kasugamycin 3% SL",
+    "Use disease-free seeds and avoid waterlogging"
+  ],
+  "Fungi": [
+    "Mancozeb 75% WP",
+    "Chlorothalonil 75% WP",
+    "Carbendazim 50% WP",
+    "Azoxystrobin 23% SC"
+  ],
+  "Healthy": [
+    "No treatment required"
+  ],
+  "Nematode": [
+    "Apply Carbofuran 3G or Phorate 10G in soil",
+    "Use neem cake before planting",
+    "Crop rotation with non-host plants",
+    "Solarize soil before sowing"
+  ],
+  "Pest": [
+    "Imidacloprid 17.8% SL",
+    "Thiamethoxam 25% WG",
+    "Spinosad 45% SC",
+    "Use yellow sticky traps and pheromone traps"
+  ],
+  "Phytophthora": [
+    "Metalaxyl 8% + Mancozeb 64% WP",
+    "Dimethomorph 50% WP",
+    "Cymoxanil 8% + Mancozeb 64% WP",
+    "Improve field drainage to reduce humidity"
+  ],
+  "Virus": [
+    "Remove and destroy infected plants",
+    "Control insect vectors using Imidacloprid 17.8% SL",
+    "Use virus-resistant varieties",
+    "Avoid planting near infected fields"
+  ]
+}
