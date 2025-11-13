@@ -1,0 +1,29 @@
+{
+  "bacterial_leaf_blight": [
+    "Copper Oxychloride 50% WP",
+    "Streptocycline 90% SP",
+    "Kasugamycin 3% SL",
+    "Avoid overhead irrigation and ensure proper drainage"
+  ],
+  "Bacterialblight": [
+    "Copper Hydroxide 77% WP",
+    "Streptocycline 90% SP",
+    "Kasugamycin 3% SL",
+    "Use disease-free certified seeds"
+  ],
+  "Blast": [
+    "Tricyclazole 75% WP",
+    "Isoprothiolane 40% EC",
+    "Carbendazim 50% WP",
+    "Apply balanced nitrogen fertilizer and avoid overcrowding"
+  ],
+  "Healthy": [
+    "No treatment required"
+  ],
+  "leaf_blast": [
+    "Tricyclazole 75% WP",
+    "Azoxystrobin 23% SC",
+    "Edifenphos 50% EC",
+    "Maintain field sanitation and good air circulation"
+  ]
+}
