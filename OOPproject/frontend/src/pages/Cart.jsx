@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaShoppingCart, FaEye, FaTrash, FaCheck, FaTimes, FaLock, FaCreditCard, FaMapMarkerAlt, FaLeaf, FaCheckCircle, FaTimesCircle, FaHourglassHalf, FaPlus, FaMinus, FaLightbulb } from 'react-icons/fa';
 import AddressForm from '../components/AddressForm';
 import './Cart.css';
 
@@ -322,12 +323,12 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
       <div className="cart-container">
         <div className="container">
           <div className="empty-cart">
-            <div className="empty-cart-icon">🛒</div>
+            <FaShoppingCart className="empty-cart-icon" />
             <h2>Your Cart is Empty</h2>
             <p>Looks like you haven't added any items to your cart yet</p>
             <div className="empty-cart-actions">
               <Link to="/marketplace" className="btn-primary">
-                🌱 Start Shopping
+                <FaLeaf /> Start Shopping
               </Link>
               <p className="empty-cart-suggestion">
                 Explore our wide range of agricultural products and find what you need!
@@ -371,11 +372,15 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                 <div style={{ 
                   marginTop: '5px', 
                   padding: '5px 10px', 
-                  backgroundColor: loginMessage.includes('✅') ? '#d4edda' : '#f8d7da',
-                  color: loginMessage.includes('✅') ? '#155724' : '#721c24',
+                  backgroundColor: loginMessage.includes('successful') ? '#d4edda' : '#f8d7da',
+                  color: loginMessage.includes('successful') ? '#155724' : '#721c24',
                   borderRadius: '4px',
-                  fontSize: '14px'
+                  fontSize: '14px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px'
                 }}>
+                  {loginMessage.includes('successful') ? <FaCheckCircle /> : <FaTimesCircle />}
                   {loginMessage}
                 </div>
               )}
@@ -388,9 +393,12 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
               backgroundColor: '#d1ecf1',
               color: '#0c5460',
               borderRadius: '4px',
-              fontSize: '14px'
+              fontSize: '14px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px'
             }}>
-              ✅ Logged in as: {user.username}
+              <FaCheckCircle /> Logged in as: {user.username}
             </div>
           )}
         </div>
@@ -416,7 +424,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                     />
                     <div className="image-overlay">
                       <Link to={`/item/${productId}`} className="view-details-btn">
-                        👁️
+                        <FaEye />
                       </Link>
                     </div>
                   </div>
@@ -435,7 +443,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                         className="quantity-btn"
                         disabled={item.quantity <= 1 || loadingItems.has(productId)}
                       >
-                        {loadingItems.has(productId) ? '⏳' : '-'}
+                        {loadingItems.has(productId) ? <FaHourglassHalf /> : <FaMinus />}
                       </button>
                       <span className="quantity-value">{item.quantity}</span>
                       <button 
@@ -443,7 +451,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                         className="quantity-btn"
                         disabled={loadingItems.has(productId)}
                       >
-                        {loadingItems.has(productId) ? '⏳' : '+'}
+                        {loadingItems.has(productId) ? <FaHourglassHalf /> : <FaPlus />}
                       </button>
                     </div>
                   </div>
@@ -461,13 +469,13 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                           className="confirm-remove-btn"
                           disabled={removingItems.has(productId)}
                         >
-                          {removingItems.has(productId) ? '⏳' : '✓'}
+                          {removingItems.has(productId) ? <FaHourglassHalf /> : <FaCheck />}
                         </button>
                         <button 
                           onClick={() => setShowRemoveConfirm(null)}
                           className="cancel-remove-btn"
                         >
-                          ✕
+                          <FaTimes />
                         </button>
                       </div>
                     ) : (
@@ -476,7 +484,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                         className="remove-btn"
                         aria-label="Remove item"
                       >
-                        🗑️
+                        <FaTrash />
                       </button>
                     )}
                   </div>
@@ -513,7 +521,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
                 
                 {shipping > 0 && (
                   <div className="free-shipping-note">
-                    💡 Add ₹{(500 - subtotal).toFixed(0)} more for free shipping!
+                    <FaLightbulb /> Add ₹{(500 - subtotal).toFixed(0)} more for free shipping!
                   </div>
                 )}
                 
@@ -532,7 +540,7 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
               >
                 {isCheckingOut ? (
                   <>
-                    <span className="loading-spinner">⏳</span>
+                    <FaHourglassHalf className="loading-spinner" />
                     Processing...
                   </>
                 ) : (
@@ -542,11 +550,11 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
               
               <div className="payment-info">
                 <div className="security-badge">
-                  <span>🔒</span>
+                  <FaLock />
                   <span>Secure payment powered by Razorpay</span>
                 </div>
                 <div className="payment-methods">
-                  <span>💳</span>
+                  <FaCreditCard />
                   <span>UPI • Cards • Net Banking • Wallets</span>
                 </div>
               </div>
@@ -566,12 +574,12 @@ function Cart({ user, cartItems, updateQuantity, removeFromCart, onCartSync, onU
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-header">
-              <h2>📍 Enter Shipping Address</h2>
+              <h2><FaMapMarkerAlt /> Enter Shipping Address</h2>
               <button 
                 className="modal-close" 
                 onClick={() => setShowAddressForm(false)}
               >
-                ✕
+                <FaTimes />
               </button>
             </div>
             <AddressForm 

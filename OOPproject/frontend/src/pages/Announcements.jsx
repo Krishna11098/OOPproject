@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form, Modal } from 'react-bootstrap';
+import { FaBullhorn, FaEdit, FaPlus, FaTrash, FaCalendar, FaUser, FaExclamationTriangle, FaInbox } from 'react-icons/fa';
 import './Announcements.css';
 const Announcements = () => {
     const [announcements, setAnnouncements] = useState([]);
@@ -100,15 +101,15 @@ const Announcements = () => {
         <div className="announcements-container">
             <Container>
                 <div className="announcements-header">
-                    <h1 className="announcements-title">📢 Announcements</h1>
+                    <h1 className="announcements-title"><FaBullhorn /> Announcements</h1>
                     <p className="announcements-subtitle">Stay updated with the latest news and updates</p>
                 </div>
                 
                 {/* Admin form to add/edit announcements */}
-                <Card className="announcement-form-card">
+                {/* <Card className="announcement-form-card">
                     <div className="form-card-header">
                         <h5 className="form-card-title">
-                            {isEditing ? '✏️ Edit Announcement' : '➕ Create New Announcement'}
+                            {isEditing ? <><FaEdit /> Edit Announcement</> : <><FaPlus /> Create New Announcement</>}
                         </h5>
                     </div>
                     <Card.Body className="announcement-form">
@@ -154,7 +155,7 @@ const Announcements = () => {
                                 />
                             </div>
                             <Button type="submit" className="btn-primary-custom me-2">
-                                {isEditing ? '✏️ Update Announcement' : '➕ Post Announcement'}
+                                {isEditing ? <><FaEdit /> Update Announcement</> : <><FaPlus /> Post Announcement</>}
                             </Button>
                             {isEditing && (
                                 <Button
@@ -176,7 +177,7 @@ const Announcements = () => {
                             )}
                         </Form>
                     </Card.Body>
-                </Card>
+                </Card> */}
 
                 {/* List of announcements */}
                 <h5 className="announcements-section-header">All Announcements</h5>
@@ -188,35 +189,35 @@ const Announcements = () => {
                                 <h6 className="announcement-card-title">{announcement.title}</h6>
                                 <div className="announcement-card-meta">
                                     <span className="announcement-date">
-                                        📅 Posted on {announcement.post_date || new Date(announcement.created_at).toLocaleDateString()}
+                                        <FaCalendar /> Posted on {announcement.post_date || new Date(announcement.created_at).toLocaleDateString()}
                                     </span>
                                     <span className="announcement-author">
-                                        👤 by {announcement.author || 'Admin'}
+                                        <FaUser /> by {announcement.author || 'Admin'}
                                     </span>
                                 </div>
                                 <p className="announcement-card-content">
                                     {announcement.content}
                                 </p>
-                                <div className="announcement-actions">
+                                {/* <div className="announcement-actions">
                                     <Button
                                         className="btn-action btn-edit"
                                         onClick={() => handleEdit(announcement)}
                                     >
-                                        ✏️ Edit
+                                        <FaEdit /> Edit
                                     </Button>
                                     <Button
                                         className="btn-action btn-delete"
                                         onClick={() => handleOpenDeleteDialog(announcement.id)}
                                     >
-                                        🗑️ Delete
+                                        <FaTrash /> Delete
                                     </Button>
-                                </div>
+                                </div> */}
                             </Card.Body>
                         </Card>
                     ))
                 ) : (
                     <div className="empty-state">
-                        <div className="empty-state-icon">📭</div>
+                        <FaInbox className="empty-state-icon" />
                         <p className="empty-state-text">No announcements available.</p>
                     </div>
                 )}
@@ -225,7 +226,7 @@ const Announcements = () => {
                 <Modal show={openDialog} onHide={handleCloseDialog}>
                     <div className="modal-content-custom">
                         <Modal.Header closeButton className="modal-header-custom">
-                            <Modal.Title className="modal-title-custom">⚠️ Confirm Deletion</Modal.Title>
+                            <Modal.Title className="modal-title-custom"><FaExclamationTriangle /> Confirm Deletion</Modal.Title>
                         </Modal.Header>
                         <Modal.Body className="modal-body-custom">
                             Are you sure you want to delete this announcement? This action cannot be undone.

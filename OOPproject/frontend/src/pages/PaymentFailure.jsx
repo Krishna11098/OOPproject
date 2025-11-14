@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { FaRedo, FaCreditCard, FaShoppingCart, FaHome, FaEnvelope, FaLeaf, FaMobileAlt, FaUniversity, FaWallet } from 'react-icons/fa';
 import './PaymentFailure.css';
 
 const PaymentFailure = () => {
@@ -122,7 +123,7 @@ const PaymentFailure = () => {
   if (!paymentError && !orderDetails) {
     return (
       <div className="loading-container">
-        <div className="loading-spinner">🌱</div>
+        <FaLeaf className="loading-spinner" />
         <p>Loading...</p>
       </div>
     );
@@ -210,28 +211,28 @@ const PaymentFailure = () => {
           <h3>Try Different Payment Methods</h3>
           <div className="payment-methods-grid">
             <div className="payment-method-option">
-              <div className="method-icon">💳</div>
+              <FaCreditCard className="method-icon" />
               <div className="method-info">
                 <h4>Credit/Debit Card</h4>
                 <p>Visa, MasterCard, RuPay</p>
               </div>
             </div>
             <div className="payment-method-option">
-              <div className="method-icon">📱</div>
+              <FaMobileAlt className="method-icon" />
               <div className="method-info">
                 <h4>UPI Payment</h4>
                 <p>Google Pay, PhonePe, Paytm</p>
               </div>
             </div>
             <div className="payment-method-option">
-              <div className="method-icon">🏦</div>
+              <FaUniversity className="method-icon" />
               <div className="method-info">
                 <h4>Net Banking</h4>
                 <p>All major banks supported</p>
               </div>
             </div>
             <div className="payment-method-option">
-              <div className="method-icon">💰</div>
+              <FaWallet className="method-icon" />
               <div className="method-info">
                 <h4>Digital Wallet</h4>
                 <p>Paytm, Amazon Pay, etc.</p>
@@ -247,26 +248,26 @@ const PaymentFailure = () => {
             className="btn-primary"
             disabled={!orderDetails}
           >
-            🔄 Retry Payment
+            <FaRedo /> Retry Payment
           </button>
           <button 
             onClick={handleChooseDifferentMethod}
             className="btn-secondary"
             disabled={!orderDetails}
           >
-            💳 Try Different Method
+            <FaCreditCard /> Try Different Method
           </button>
           <button 
             onClick={handleBackToCart}
             className="btn-secondary"
           >
-            🛒 Back to Cart
+            <FaShoppingCart /> Back to Cart
           </button>
           <button 
             onClick={handleContinueShopping}
             className="btn-outline"
           >
-            🏠 Continue Shopping
+            <FaHome /> Continue Shopping
           </button>
         </div>
 
@@ -279,7 +280,7 @@ const PaymentFailure = () => {
               onClick={handleContactSupport}
               className="support-btn"
             >
-              📧 Contact Support
+              <FaEnvelope /> Contact Support
             </button>
             <div className="support-info">
               <div className="support-contact">

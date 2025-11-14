@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FaSearch, FaLeaf, FaCheck, FaStar } from 'react-icons/fa';
 import './Marketplace.css';
 
 function Marketplace({ user, addToCart, isAddingToCart }) {
@@ -172,7 +173,7 @@ function Marketplace({ user, addToCart, isAddingToCart }) {
       {loading && (
         <div className="loading-section">
           <div className="container">
-            <div className="loading-spinner">🌱</div>
+            <FaLeaf className="loading-spinner" />
             <p>Loading products...</p>
           </div>
         </div>
@@ -207,7 +208,7 @@ function Marketplace({ user, addToCart, isAddingToCart }) {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                   />
-                  <span className="search-icon">🔍</span>
+                  <FaSearch className="search-icon" />
                 </div>
 
                 <div className="filter-group">
@@ -265,7 +266,9 @@ function Marketplace({ user, addToCart, isAddingToCart }) {
                         <h3 className="product-name">{product.name}</h3>
                         <p className="product-description">{product.description}</p>
                         <div className="product-rating">
-                          <span className="stars">{'★'.repeat(Math.floor(product.rating || 4))}</span>
+                          <span className="stars">
+                            {[...Array(Math.floor(product.rating || 4))].map((_, i) => <FaStar key={i} />)}
+                          </span>
                           <span className="rating-text">{product.rating || '4.0'} ({product.reviews || '0'} reviews)</span>
                         </div>
                         <div className="product-price">₹{product.price}</div>
@@ -283,11 +286,11 @@ function Marketplace({ user, addToCart, isAddingToCart }) {
                       >
                         {addedToCart.has(product.id) ? (
                           <span>
-                            <span className="check-icon">✓</span> Added to Cart!
+                            <FaCheck className="check-icon" /> Added to Cart!
                           </span>
                         ) : addingToCart.has(product.id) ? (
                           <span>
-                            <span className="loading-spinner">⟳</span> Adding...
+                            <FaLeaf className="loading-spinner" /> Adding...
                           </span>
                         ) : (
                           product.in_stock ? "Add to Cart" : "Out of Stock"

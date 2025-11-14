@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { FaShoppingCart, FaCheck, FaTimes, FaLeaf, FaStar, FaRegStar } from 'react-icons/fa';
 import './ItemDetail.css';
 
 function ItemDetail({ user, addToCart, isAddingToCart }) {
@@ -110,7 +111,7 @@ function ItemDetail({ user, addToCart, isAddingToCart }) {
     return (
       <div className="item-detail-container">
         <div className="loading-container">
-          <div className="loading-spinner">🌱</div>
+          <FaLeaf className="loading-spinner" />
           <p>Loading product details...</p>
         </div>
       </div>
@@ -165,8 +166,9 @@ function ItemDetail({ user, addToCart, isAddingToCart }) {
             <div className="rating-section">
               <div className="rating">
                 <span className="stars">
-                  {'★'.repeat(Math.floor(product.rating || 4))}
-                  {'☆'.repeat(5 - Math.floor(product.rating || 4))}
+                  {[...Array(5)].map((_, i) => (
+                    i < Math.floor(product.rating || 4) ? <FaStar key={i} /> : <FaRegStar key={i} />
+                  ))}
                 </span>
                 <span className="rating-value">({product.rating || '4.0'})</span>
               </div>
@@ -178,9 +180,9 @@ function ItemDetail({ user, addToCart, isAddingToCart }) {
             <div className="price">₹{product.price}</div>
             <div className="stock-info">
               {product.stock_quantity > 0 ? (
-                <span className="in-stock">✓ In Stock ({product.stock_quantity} available)</span>
+                <span className="in-stock"><FaCheck /> In Stock ({product.stock_quantity} available)</span>
               ) : (
-                <span className="out-of-stock">✗ Out of Stock</span>
+                <span className="out-of-stock"><FaTimes /> Out of Stock</span>
               )}
             </div>
           </div>
@@ -212,25 +214,25 @@ function ItemDetail({ user, addToCart, isAddingToCart }) {
                 >
                   {showAdded === 'added' ? (
                     <span className="success-message">
-                      <span className="check-icon">✓</span> Added to Cart! ({clickCount})
+                      <FaCheck className="check-icon" /> Added to Cart! ({clickCount})
                     </span>
                   ) : showAdded === 'error' ? (
                     <span className="error-message">
-                      <span className="error-icon">✗</span> Failed to Add
+                      <FaTimes className="error-icon" /> Failed to Add
                     </span>
                   ) : localAddingToCart ? (
                     <span className="loading-message">
-                      <span className="loading-spinner">⟳</span> Adding to Cart...
+                      <FaLeaf className="loading-spinner" /> Adding to Cart...
                     </span>
                   ) : (
                     <span className="default-message">
-                      <span className="cart-icon">🛒</span> Add to Cart - ₹{product.price.toLocaleString()}
+                      <FaShoppingCart className="cart-icon" /> Add to Cart - ₹{product.price.toLocaleString()}
                     </span>
                   )}
                 </button>
                 
                 <Link to="/cart" className="view-cart-btn">
-                  <span className="cart-icon">🛒</span> View Cart
+                  <FaShoppingCart className="cart-icon" /> View Cart
                 </Link>
               </div>
             </div>

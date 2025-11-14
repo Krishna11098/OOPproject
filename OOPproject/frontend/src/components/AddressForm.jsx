@@ -1,5 +1,6 @@
 // AddressForm.jsx - Suggested component
 import React, { useState } from 'react';
+import { FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa';
 import './AddressForm.css';
 
 const AddressForm = ({ onAddressSubmit, initialAddress = {} }) => {
@@ -28,7 +29,7 @@ ${address.landmark ? 'Near: ' + address.landmark : ''}`.trim();
 
   return (
     <form onSubmit={handleSubmit} className="address-form">
-      <h3>📍 Shipping Address</h3>
+      <h3><FaMapMarkerAlt /> Shipping Address</h3>
       
       <div className="form-row">
         <input
@@ -93,7 +94,7 @@ ${address.landmark ? 'Near: ' + address.landmark : ''}`.trim();
         onChange={(e) => setAddress({...address, landmark: e.target.value})}
       />
       
-      <button type="submit">✅ Use This Address</button>
+      <button type="submit"><FaCheckCircle /> Use This Address</button>
     </form>
   );
 };

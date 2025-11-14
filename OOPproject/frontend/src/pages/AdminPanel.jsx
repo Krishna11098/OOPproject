@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Table, Form, Button, Alert, Modal, Nav } from 'react-bootstrap';
+import { FaChartLine, FaBullhorn, FaUsers, FaUserShield, FaUser, FaCheckCircle, FaBan, FaEdit, FaTrash, FaTimes, FaBars } from 'react-icons/fa';
 import './AdminPanel.css';
 
 const AdminPanel = ({ user }) => {
@@ -240,7 +241,7 @@ const AdminPanel = ({ user }) => {
         <Row className="justify-content-center">
           <Col md={6}>
             <Alert variant="danger" className="text-center">
-              <h4>🚫 Access Denied</h4>
+              <h4><FaBan /> Access Denied</h4>
               <p>You don't have admin privileges to access this page.</p>
             </Alert>
           </Col>
@@ -329,15 +330,15 @@ const AdminPanel = ({ user }) => {
     <div className="admin-panel">
       {/* Sidebar Toggle Button */}
       <button 
-        className={`sidebar-toggle ${sidebarOpen ? 'hidden' : ''}`}
+        className={`admin-sidebar-toggle ${sidebarOpen ? 'hidden' : ''}`}
         onClick={toggleSidebar}
       >
-        ☰
+        <FaBars />
       </button>
 
       {/* Sidebar Overlay for mobile */}
       <div 
-        className={`sidebar-overlay ${sidebarOpen ? 'active' : ''}`}
+        className={`admin-sidebar-overlay ${sidebarOpen ? 'active' : ''}`}
         onClick={closeSidebar}
       ></div>
 
@@ -345,51 +346,51 @@ const AdminPanel = ({ user }) => {
         <Row className="min-vh-100">
           {/* Sidebar */}
           <div className={`admin-sidebar ${sidebarOpen ? 'active' : ''}`}>
-            <div className="sidebar-content">
-              <div className="sidebar-header">
-                <button className="sidebar-close" onClick={closeSidebar}>
-                  ✕
+            <div className="admin-sidebar-content">
+              <div className="admin-sidebar-header">
+                <button className="admin-sidebar-close" onClick={closeSidebar}>
+                  <FaTimes />
                 </button>
-                <h4 className="sidebar-title">
-                  <span className="sidebar-icon">🔑</span>
+                <h4 className="admin-sidebar-title">
+                  <FaUserShield className="admin-sidebar-icon" />
                   Admin Panel
                 </h4>
               </div>
               
-              <Nav className="flex-column sidebar-nav">
+              <Nav className="flex-column admin-sidebar-nav">
                 <Nav.Item>
                   <Nav.Link 
-                    className={`sidebar-link ${activeTab === 'dashboard' ? 'active' : ''}`}
+                    className={`admin-sidebar-link ${activeTab === 'dashboard' ? 'active' : ''}`}
                     onClick={() => {
                       setActiveTab('dashboard');
                       setSidebarOpen(false);
                     }}
                   >
-                    <span className="nav-icon">📊</span>
+                    <FaChartLine className="admin-nav-icon" />
                     Dashboard
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link 
-                    className={`sidebar-link ${activeTab === 'announcements' ? 'active' : ''}`}
+                    className={`admin-sidebar-link ${activeTab === 'announcements' ? 'active' : ''}`}
                     onClick={() => {
                       setActiveTab('announcements');
                       setSidebarOpen(false);
                     }}
                   >
-                    <span className="nav-icon">📢</span>
+                    <FaBullhorn className="admin-nav-icon" />
                     Announcements
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link 
-                    className={`sidebar-link ${activeTab === 'users' ? 'active' : ''}`}
+                    className={`admin-sidebar-link ${activeTab === 'users' ? 'active' : ''}`}
                     onClick={() => {
                       setActiveTab('users');
                       setSidebarOpen(false);
                     }}
                   >
-                    <span className="nav-icon">👥</span>
+                    <FaUsers className="admin-nav-icon" />
                     Users
                   </Nav.Link>
                 </Nav.Item>
@@ -401,11 +402,11 @@ const AdminPanel = ({ user }) => {
           <div className={`admin-main-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
             <div className="content-wrapper">
               {/* Header */}
-              <div className="content-header">
-                <h2 className="page-title">
-                  {activeTab === 'dashboard' && '📊 Dashboard Overview'}
-                  {activeTab === 'announcements' && '📢 Announcement Management'}
-                  {activeTab === 'users' && '👥 User Management'}
+              <div className="admin-content-header">
+                <h2 className="admin-page-title">
+                  {activeTab === 'dashboard' && <><FaChartLine /> Dashboard Overview</>}
+                  {activeTab === 'announcements' && <><FaBullhorn /> Announcement Management</>}
+                  {activeTab === 'users' && <><FaUsers /> User Management</>}
                 </h2>
               </div>
 
@@ -423,33 +424,33 @@ const AdminPanel = ({ user }) => {
 
               {/* Dashboard Tab */}
               {activeTab === 'dashboard' && (
-                <div className="dashboard-container">
+                <div className="admin-dashboard-container">
                   {/* Statistics Cards - First Row: 3 cards */}
                   <Row className="mb-4">
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-primary">
+                      <Card className="admin-stats-card admin-stats-card-primary">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">👥</div>
-                          <h3 className="stats-number">{stats.totalUsers}</h3>
-                          <p className="stats-label">Total Users</p>
+                          <FaUsers className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{stats.totalUsers}</h3>
+                          <p className="admin-stats-label">Total Users</p>
                         </Card.Body>
                       </Card>
                     </Col>
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-success">
+                      <Card className="admin-stats-card admin-stats-card-success">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">🔑</div>
-                          <h3 className="stats-number">{stats.adminUsers}</h3>
-                          <p className="stats-label">Admin Users</p>
+                          <FaUserShield className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{stats.adminUsers}</h3>
+                          <p className="admin-stats-label">Admin Users</p>
                         </Card.Body>
                       </Card>
                     </Col>
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-info">
+                      <Card className="admin-stats-card admin-stats-card-info">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">👤</div>
-                          <h3 className="stats-number">{stats.regularUsers}</h3>
-                          <p className="stats-label">Regular Users</p>
+                          <FaUser className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{stats.regularUsers}</h3>
+                          <p className="admin-stats-label">Regular Users</p>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -458,29 +459,29 @@ const AdminPanel = ({ user }) => {
                   {/* Second Row - 3 cards */}
                   <Row className="mb-4">
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-warning">
+                      <Card className="admin-stats-card admin-stats-card-warning">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">📢</div>
-                          <h3 className="stats-number">{announcements.length}</h3>
-                          <p className="stats-label">Announcements</p>
+                          <FaBullhorn className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{announcements.length}</h3>
+                          <p className="admin-stats-label">Announcements</p>
                         </Card.Body>
                       </Card>
                     </Col>
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-success">
+                      <Card className="admin-stats-card admin-stats-card-success">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">✅</div>
-                          <h3 className="stats-number">{stats.activeUsers}</h3>
-                          <p className="stats-label">Active Users</p>
+                          <FaCheckCircle className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{stats.activeUsers}</h3>
+                          <p className="admin-stats-label">Active Users</p>
                         </Card.Body>
                       </Card>
                     </Col>
                     <Col xs={12} md={4} className="mb-3">
-                      <Card className="stats-card stats-card-danger">
+                      <Card className="admin-stats-card admin-stats-card-danger">
                         <Card.Body className="text-center">
-                          <div className="stats-icon">🚫</div>
-                          <h3 className="stats-number">{stats.bannedUsers}</h3>
-                          <p className="stats-label">Banned Users</p>
+                          <FaBan className="admin-stats-icon" />
+                          <h3 className="admin-stats-number">{stats.bannedUsers}</h3>
+                          <p className="admin-stats-label">Banned Users</p>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -489,20 +490,20 @@ const AdminPanel = ({ user }) => {
                   {/* Recent Activity */}
                   <Row>
                     <Col xs={12}>
-                      <Card className="activity-card">
+                      <Card className="admin-activity-card">
                         <Card.Header>
-                          <h5 className="mb-0">📈 Recent Activity</h5>
+                          <h5 className="mb-0"><FaChartLine /> Recent Activity</h5>
                         </Card.Header>
                         <Card.Body>
-                          <div className="activity-item">
-                            <span className="activity-icon">📢</span>
-                            <span className="activity-text">
+                          <div className="admin-activity-item">
+                            <FaBullhorn className="admin-activity-icon" />
+                            <span className="admin-activity-text">
                               {announcements.length} total announcements created
                             </span>
                           </div>
-                          <div className="activity-item">
-                            <span className="activity-icon">👥</span>
-                            <span className="activity-text">
+                          <div className="admin-activity-item">
+                            <FaUsers className="admin-activity-icon" />
+                            <span className="admin-activity-text">
                               {stats.totalUsers} users registered on the platform
                             </span>
                           </div>
@@ -518,23 +519,23 @@ const AdminPanel = ({ user }) => {
                 <Row>
                   {/* Announcement Form */}
                   <Col lg={6} className="mb-4">
-                    <Card className="form-card h-100">
-                      <Card.Header className="announcement-form-header">
+                    <Card className="admin-form-card h-100">
+                      <Card.Header className="admin-announcement-form-header">
                         <h5 className="mb-0">
-                          {isEditing ? '✏️ Edit Announcement' : '➕ Create New Announcement'}
+                          {isEditing ? <><FaEdit /> Edit Announcement</> : <><FaBullhorn /> Create New Announcement</>}
                         </h5>
                       </Card.Header>
-                      <Card.Body className="announcement-form-body">
+                      <Card.Body className="admin-announcement-form-body">
                         <Form onSubmit={handleCreateUpdate}>
-                          <Row className="form-row-layout">
+                          <Row className="admin-form-row-layout">
                             {/* Left Column - Title and Date */}
-                            <Col xs={12} sm={6} className="left-column">
-                              <div className="left-form-section">
+                            <Col xs={12} sm={6} className="admin-left-column">
+                              <div className="admin-left-form-section">
                                 <Form.Group className="mb-4">
-                                  <Form.Label className="form-label-spaced">Title: </Form.Label>
+                                  <Form.Label className="admin-form-label-spaced">Title: </Form.Label>
                                   <Form.Control
                                     type="text"
-                                    className="form-input-spaced"
+                                    className="admin-form-input-spaced"
                                     value={newAnnouncementData.title}
                                     onChange={(e) => setNewAnnouncementData({
                                       ...newAnnouncementData,
@@ -545,10 +546,10 @@ const AdminPanel = ({ user }) => {
                                   />
                                 </Form.Group>
                                 <Form.Group className="mb-4">
-                                  <Form.Label className="form-label-spaced">Date: </Form.Label>
+                                  <Form.Label className="admin-form-label-spaced">Date: </Form.Label>
                                   <Form.Control
                                     type="date"
-                                    className="form-input-spaced"
+                                    className="admin-form-input-spaced"
                                     value={newAnnouncementData.post_date}
                                     onChange={(e) => setNewAnnouncementData({
                                       ...newAnnouncementData,
@@ -561,13 +562,13 @@ const AdminPanel = ({ user }) => {
                             </Col>
 
                             {/* Right Column - Content */}
-                            <Col xs={12} sm={6} className="right-column">
-                              <div className="right-form-section">
+                            <Col xs={12} sm={6} className="admin-right-column">
+                              <div className="admin-right-form-section">
                                 <Form.Group className="mb-4 h-100">
-                                  <Form.Label className="form-label-spaced">Content: </Form.Label>
+                                  <Form.Label className="admin-form-label-spaced">Content: </Form.Label>
                                   <Form.Control
                                     as="textarea"
-                                    className="form-textarea-spaced form-textarea-tall"
+                                    className="admin-form-textarea-spaced admin-form-textarea-tall"
                                     value={newAnnouncementData.content}
                                     onChange={(e) => setNewAnnouncementData({
                                       ...newAnnouncementData,
@@ -580,12 +581,12 @@ const AdminPanel = ({ user }) => {
                               </div>
                             </Col>
                           </Row>
-                          <div className="form-buttons-container">
-                            <Button type="submit" variant="primary" className="form-button-primary">
+                          <div className="admin-form-buttons-container">
+                            <Button type="submit" variant="primary" className="admin-form-button-primary">
                               {isEditing ? 'Update Announcement' : 'Create Announcement'}
                             </Button>
                             {isEditing && (
-                              <Button type="button" variant="secondary" className="form-button-secondary" onClick={handleCancelEdit}>
+                              <Button type="button" variant="secondary" className="admin-form-button-secondary" onClick={handleCancelEdit}>
                                 Cancel
                               </Button>
                             )}
@@ -597,21 +598,21 @@ const AdminPanel = ({ user }) => {
 
                   {/* Announcements List */}
                   <Col lg={6} className="mb-4">
-                    <Card className="announcements-card h-100">
+                    <Card className="admin-announcements-card h-100">
                       <Card.Header>
-                        <h5 className="mb-0">📢 All Announcements</h5>
+                        <h5 className="mb-0"><FaBullhorn /> All Announcements</h5>
                       </Card.Header>
                       <Card.Body>
                         {announcements.length === 0 ? (
                           <div className="text-center text-muted py-4">
-                            <div className="empty-state">
-                              <span className="empty-icon">📢</span>
+                            <div className="admin-empty-state">
+                              <FaBullhorn className="admin-empty-icon" />
                               <p>No announcements found. Create your first announcement above!</p>
                             </div>
                           </div>
                         ) : (
-                          <div className="announcements-scroll">
-                            <Table responsive striped className="announcements-table">
+                          <div className="admin-announcements-scroll">
+                            <Table responsive striped className="admin-announcements-table">
                               <thead>
                                 <tr>
                                   <th>ID</th>
@@ -626,7 +627,7 @@ const AdminPanel = ({ user }) => {
                                   <tr key={announcement.id}>
                                     <td>{announcement.id}</td>
                                     <td>{announcement.title}</td>
-                                    <td className="content-cell">
+                                    <td className="admin-content-cell">
                                       {announcement.content.length > 80 
                                         ? announcement.content.substring(0, 80) + '...'
                                         : announcement.content
@@ -634,21 +635,22 @@ const AdminPanel = ({ user }) => {
                                     </td>
                                     <td>{announcement.post_date}</td>
                                     <td>
-                                      <div className="action-buttons">
+                                      <div className="admin-action-buttons">
                                         <Button
                                           size="sm"
                                           variant="outline-primary"
                                           onClick={() => handleEdit(announcement)}
-                                          className="me-2"
+                                          className="me-2 admin-btn-edit"
                                         >
-                                          Edit
+                                          <FaEdit /> Edit
                                         </Button>
                                         <Button
                                           size="sm"
                                           variant="outline-danger"
                                           onClick={() => showDeleteConfirmation(announcement.id)}
+                                          className="admin-btn-delete"
                                         >
-                                          Delete
+                                          <FaTrash /> Delete
                                         </Button>
                                       </div>
                                     </td>
@@ -668,9 +670,9 @@ const AdminPanel = ({ user }) => {
               {activeTab === 'users' && (
                 <Row>
                   <Col xs={12}>
-                    <Card className="users-card">
+                    <Card className="admin-users-card">
                       <Card.Header>
-                        <h5 className="mb-0">👥 User Management</h5>
+                        <h5 className="mb-0"><FaUsers /> User Management</h5>
                       </Card.Header>
                       <Card.Body>
                         {users.length === 0 ? (
@@ -681,8 +683,8 @@ const AdminPanel = ({ user }) => {
                             </div>
                           </div>
                         ) : (
-                          <div className="users-scroll">
-                            <Table responsive striped className="users-table">
+                          <div className="admin-users-scroll">
+                            <Table responsive striped className="admin-users-table">
                               <thead>
                                 <tr>
                                   <th>ID</th>
@@ -712,24 +714,24 @@ const AdminPanel = ({ user }) => {
                                     </td>
                                     <td>{user.ban_reason || '-'}</td>
                                     <td>
-                                      <div className="action-buttons">
+                                      <div className="admin-action-buttons">
                                         {!user.is_admin && (
                                           <>
                                             {user.is_banned ? (
                                               <Button
                                                 size="sm"
                                                 onClick={() => handleUnbanUser(user.id)}
-                                                className="btn-unban me-2"
+                                                className="admin-btn-unban me-2"
                                               >
-                                                Unban
+                                                <FaCheckCircle /> Unban
                                               </Button>
                                             ) : (
                                               <Button
                                                 size="sm"
                                                 onClick={() => showBanConfirmation(user.id)}
-                                                className="btn-ban me-2"
+                                                className="admin-btn-ban me-2"
                                               >
-                                                Ban
+                                                <FaBan /> Ban
                                               </Button>
                                             )}
                                           </>
@@ -790,14 +792,14 @@ const AdminPanel = ({ user }) => {
         restoreFocus={false}
       >
         <Modal.Header>
-          <Modal.Title>Ban User</Modal.Title>
+          <Modal.Title><FaBan /> Ban User</Modal.Title>
           <button 
             type="button" 
-            className="custom-close-btn" 
+            className="admin-custom-close-btn" 
             onClick={closeBanModal}
             aria-label="Close"
           >
-            ✕
+            <FaTimes />
           </button>
         </Modal.Header>
         <Modal.Body>

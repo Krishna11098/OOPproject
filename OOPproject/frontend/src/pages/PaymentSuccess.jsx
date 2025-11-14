@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { FaFileInvoice, FaBox, FaShoppingCart, FaLeaf } from 'react-icons/fa';
 import './PaymentSuccess.css';
 
 const PaymentSuccess = () => {
@@ -38,7 +39,7 @@ const PaymentSuccess = () => {
   if (!orderDetails || !paymentDetails) {
     return (
       <div className="loading-container">
-        <div className="loading-spinner">🌱</div>
+        <FaLeaf className="loading-spinner" />
         <p>Loading...</p>
       </div>
     );
@@ -172,19 +173,19 @@ const PaymentSuccess = () => {
             onClick={handleDownloadInvoice}
             className="btn-secondary"
           >
-            📄 Download Invoice
+            <FaFileInvoice /> Download Invoice
           </button>
           <button 
             onClick={handleViewOrders}
             className="btn-secondary"
           >
-            📦 View All Orders
+            <FaBox /> View All Orders
           </button>
           <button 
             onClick={handleContinueShopping}
             className="btn-primary"
           >
-            🛒 Continue Shopping
+            <FaShoppingCart /> Continue Shopping
           </button>
         </div>
 

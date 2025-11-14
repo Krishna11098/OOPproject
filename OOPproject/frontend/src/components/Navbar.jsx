@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaLeaf, FaShoppingCart, FaUserShield } from 'react-icons/fa';
 import './Navbar.css';
 
 function Navbar({ user, onLogout, cartItemCount = 0 }) {
@@ -6,8 +7,8 @@ function Navbar({ user, onLogout, cartItemCount = 0 }) {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-brand">
-          <span className="brand-icon">🌱</span>
-          PlantDetector
+          <FaLeaf className="brand-icon" />
+          AgriCare
         </Link>
         
         <div className="nav-links">
@@ -21,7 +22,7 @@ function Navbar({ user, onLogout, cartItemCount = 0 }) {
             {user ? (
               <div className="user-menu">
                 <Link to="/cart" className="cart-link">
-                  <span className="cart-icon">🛒</span>
+                  <FaShoppingCart className="cart-icon" />
                   {cartItemCount > 0 && <span className="cart-count">{cartItemCount}</span>}
                 </Link>
                 <span className="welcome-text">Welcome, {user.username}</span>
@@ -40,7 +41,7 @@ function Navbar({ user, onLogout, cartItemCount = 0 }) {
         {user && user.is_admin && (
           <div className="admin-corner">
             <Link to="/admin" className="admin-link">
-              <span className="admin-icon">🔑</span>
+              <FaUserShield className="admin-icon" />
               Admin
             </Link>
           </div>

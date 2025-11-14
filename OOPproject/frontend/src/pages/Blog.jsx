@@ -1,5 +1,6 @@
 // src/components/Blogs.jsx
 import React, { useEffect, useState } from "react";
+import { FaThumbsUp, FaThumbsDown, FaComment } from 'react-icons/fa';
 import "./Blog.css";
 
 const API = "http://localhost:8000";
@@ -346,7 +347,7 @@ export default function Blogs({ user }) {
                     disabled={!currentUser || loading}
                     title={currentUser ? "Like this blog" : "Log in to like"}
                   >
-                    👍 {blog.likes}
+                    <FaThumbsUp /> {blog.likes}
                   </button>
                   <button 
                     className={`blog-dislike ${!currentUser ? 'disabled' : ''}`}
@@ -354,7 +355,7 @@ export default function Blogs({ user }) {
                     disabled={!currentUser || loading}
                     title={currentUser ? "Dislike this blog" : "Log in to dislike"}
                   >
-                    👎 {blog.dislikes}
+                    <FaThumbsDown /> {blog.dislikes}
                   </button>
                 </div>
 
@@ -362,7 +363,7 @@ export default function Blogs({ user }) {
                   className="blog-comment-toggle"
                   onClick={() => toggleComments(blog.id)}
                 >
-                  💬 Comments ({blog.comments.length})
+                  <FaComment /> Comments ({blog.comments.length})
                 </button>
               </div>
 

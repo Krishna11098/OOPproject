@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { FaCamera, FaLeaf, FaPills, FaClipboardList, FaExclamationTriangle } from 'react-icons/fa';
 import "./DiseaseDetection.css";
 
 const DiseaseDetection = ({ selectedPlant, onBack }) => {
@@ -111,7 +112,7 @@ const DiseaseDetection = ({ selectedPlant, onBack }) => {
         </p>
       </header>
 
-      {error && <div className="error-message">⚠️ {error}</div>}
+      {error && <div className="error-message"><FaExclamationTriangle /> {error}</div>}
 
       <div className="upload-section">
         {!results ? (
@@ -122,7 +123,7 @@ const DiseaseDetection = ({ selectedPlant, onBack }) => {
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
             >
-              <div className="upload-icon">📷</div>
+              <FaCamera className="upload-icon" />
               <p className="upload-text">
                 Drag & drop your {selectedPlant} image here or click to browse
               </p>
@@ -166,7 +167,7 @@ const DiseaseDetection = ({ selectedPlant, onBack }) => {
             <h2>Analysis Results</h2>
             <div className="results-grid">
               <div className="result-card disease-card">
-                <h3>🌱 Plant Information</h3>
+                <h3><FaLeaf /> Plant Information</h3>
                 <p>
                   <strong>Type:</strong> {selectedPlant}
                 </p>
@@ -182,7 +183,7 @@ const DiseaseDetection = ({ selectedPlant, onBack }) => {
               </div>
 
               <div className="result-card treatment-card">
-                <h3>💊 Recommended Treatment</h3>
+                <h3><FaPills /> Recommended Treatment</h3>
                 {/* ✅ Display treatments as list */}
                 {results.treatments && Array.isArray(results.treatments) ? (
                   <ul style={{ paddingLeft: "20px", margin: "10px 0" }}>
@@ -205,7 +206,7 @@ const DiseaseDetection = ({ selectedPlant, onBack }) => {
 
               {results.additional_info && (
                 <div className="result-card info-card">
-                  <h3>📋 Additional Information</h3>
+                  <h3><FaClipboardList /> Additional Information</h3>
                   <p>{results.additional_info}</p>
                 </div>
               )}

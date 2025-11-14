@@ -56,8 +56,8 @@ async def create_order(
 ):
     """Create a new order for buy now or cart checkout"""
     try:
-        print(f"📦 Order creation started for user: {current_user.username}")
-        print(f"📦 Order data: {order_data}")
+        # print(f"📦 Order creation started for user: {current_user.username}")
+        # print(f"📦 Order data: {order_data}")
         
         # Validate items
         if not order_data.items:
@@ -69,8 +69,8 @@ async def create_order(
         shipping = 0 if subtotal > 500 else 50  # Free shipping over 500 like frontend
         calculated_total = subtotal + tax + shipping
         
-        print(f"📦 Backend calculation - Subtotal: {subtotal}, Tax: {tax}, Shipping: {shipping}, Total: {calculated_total}")
-        print(f"📦 Frontend sent total: {order_data.total_amount}")
+        # print(f"📦 Backend calculation - Subtotal: {subtotal}, Tax: {tax}, Shipping: {shipping}, Total: {calculated_total}")
+        # print(f"📦 Frontend sent total: {order_data.total_amount}")
         
         if abs(calculated_total - order_data.total_amount) > 1.0:  # Allow 1 rupee difference for rounding
             raise HTTPException(
@@ -78,7 +78,7 @@ async def create_order(
                 detail=f"Total amount mismatch. Expected: {calculated_total}, Received: {order_data.total_amount}"
             )
         
-        print(f"📦 Creating order in database...")
+        # print(f"📦 Creating order in database...")
         
         # Calculate estimated delivery date (7-10 business days)
         from datetime import timedelta
@@ -93,7 +93,7 @@ async def create_order(
         while delivery_date.weekday() >= 5:  # 5 = Saturday, 6 = Sunday
             delivery_date += timedelta(days=1)
         
-        print(f"📦 Estimated delivery date: {delivery_date.strftime('%Y-%m-%d')}")
+        # print(f"📦 Estimated delivery date: {delivery_date.strftime('%Y-%m-%d')}")
         
         # Create order in database
         new_order = DBOrder(
@@ -138,7 +138,7 @@ async def create_order(
         }
         
     except Exception as e:
-        print(f"❌ Order creation failed: {str(e)}")
+        # print(f"❌ Order creation failed: {str(e)}")
         import traceback
         traceback.print_exc()
         db.rollback()
