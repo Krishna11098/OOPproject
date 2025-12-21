@@ -1,0 +1,29 @@
+{
+  "Anthracnose": [
+    "Azoxystrobin 23% SC",
+    "Chlorothalonil 75% WP",
+    "Mancozeb 75% WP",
+    "Copper Oxychloride 50% WP"
+  ],
+  "Bacterial Wilt": [
+    "Soil drenching with Copper Oxychloride 50% WP",
+    "Use of Streptocycline 90% SP as foliar spray",
+    "Crop rotation with non-solanaceous crops",
+    "Use resistant varieties and ensure good drainage"
+  ],
+  "Downy Mildew": [
+    "Metalaxyl 8% + Mancozeb 64% WP",
+    "Dimethomorph 50% WP",
+    "Copper Hydroxide 77% WP",
+    "Azoxystrobin 23% SC"
+  ],
+  "Gummy Stem Blight": [
+    "Carbendazim 50% WP",
+    "Mancozeb 75% WP",
+    "Thiophanate Methyl 70% WP",
+    "Chlorothalonil 75% WP"
+  ],
+  "Healthly": [
+    "No treatment required"
+  ]
+}

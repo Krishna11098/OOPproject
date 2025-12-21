@@ -249,7 +249,7 @@ function Marketplace({ user, addToCart, isAddingToCart }) {
               </div>
 
               <div className="products-grid">
-                {filteredProducts.map(product => (
+                {filteredProducts.slice(0, 5).map(product => (
                   <div key={product.id} className="product-card">
                     <Link to={`/item/${product.id}`} className="product-link">
                       <div className="product-image">

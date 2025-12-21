@@ -773,13 +773,13 @@
   animation: slideUp 0.3s ease-out;
 }
 
-.modal-header {
+/* .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 2rem 1rem 2rem;
   border-bottom: 1px solid #e9ecef;
-}
+} */
 
 .modal-header h2 {
   font-size: 1.5rem;

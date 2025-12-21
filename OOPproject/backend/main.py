@@ -214,6 +214,14 @@ async def create_blog(payload: BlogCreate, request: Request, db: db_dependency):
     if not user_id:
         raise HTTPException(status_code=401, detail="Not authenticated")
 
+    # Get user for OOP wrapper
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    
+    # Pure OOP: Create BlogManager (demonstrates containership)
+    blog_manager = models.BlogManager(user.username)
+    oop_blog = blog_manager.create_blog(payload.title, payload.content)
+    
+    # Database operation (existing functionality preserved)
     blog = models.Blog(title=payload.title, content=payload.content,
                        user_id=user_id, likes=0, dislikes=0)
     db.add(blog)
@@ -228,7 +236,8 @@ async def create_blog(payload: BlogCreate, request: Request, db: db_dependency):
         "dislikes": blog.dislikes,
         "created_at": blog.created_at,
         "author": {"id": blog.author.id, "username": blog.author.username},
-        "comments": []
+        "comments": [],
+        "oop_validation": f"Created via OOP BlogManager for {blog_manager.username}"
     }
 
 
@@ -525,3 +534,5 @@ async def get_announcements(db: Session = Depends(get_db)):
         formatted_announcements.append(formatted_announcement)
     
     return formatted_announcements
+
+

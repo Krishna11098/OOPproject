@@ -22,6 +22,14 @@ class User(Base):
     comments = relationship(
         "Comment", back_populates="user", cascade="all, delete-orphan")
 
+class Admin(User):
+    __tablename__ = 'admins'
+    __mapper_args__ = {'polymorphic_identity': 'admin'}
+    
+    id = Column(Integer, ForeignKey('users.id'), primary_key=True)
+    admin_level = Column(Integer, default=1)
+    department = Column(String(100), nullable=True)
+    privileges = Column(String(200), default="manage_users,manage_blogs")
 
 class Blog(Base):
     __tablename__ = 'blogs'
@@ -287,3 +295,34 @@ class Announcement(Base):
     
     # Relationship to User
     author = relationship("User")
+
+
+# Pure OOP Classes for Blog System (Containership Pattern)
+class BlogPost:
+    def __init__(self, title, content, author_name):
+        self.title = title
+        self.content = content
+        self.author_name = author_name
+        self.likes = 0
+        self.dislikes = 0
+    
+    def add_like(self):
+        self.likes += 1
+        return self.likes
+    
+    def add_dislike(self):
+        self.dislikes += 1
+        return self.dislikes
+
+class BlogManager:
+    def __init__(self, username):
+        self.username = username
+        self.blogs = []  # Containership: BlogManager contains BlogPosts
+    
+    def create_blog(self, title, content):
+        blog = BlogPost(title, content, self.username)
+        self.blogs.append(blog)
+        return blog
+    
+    def get_blog_count(self):
+        return len(self.blogs)

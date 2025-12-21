@@ -19,7 +19,7 @@ def create_admin_user():
     try:
         # Check if admin user already exists
         existing_user = db.query(models.User).filter(
-            (models.User.username == "admin_1") | 
+            (models.User.username == "admin") | 
             (models.User.email == "admin1009@gmail.com")
         ).first()
         
@@ -36,11 +36,11 @@ def create_admin_user():
             return
         
         # Hash the password
-        hashed_password = hash_password("Admin@svnit1009")
+        hashed_password = hash_password("Pass123")
         
         # Create new admin user
         admin_user = models.User(
-            username="admin_1",
+            username="admin",
             email="admin1009@gmail.com", 
             password=hashed_password,
             is_admin=True
