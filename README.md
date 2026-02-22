@@ -1,6 +1,10 @@
-# OOP Project
+# OOP Project — Plant Disease Detection
 
-A full-stack application with FastAPI backend, React frontend, and ML model integration.
+A full-stack agricultural application that uses deep learning to detect plant diseases from leaf images. The project fine-tunes **ResNet18** (a pre-trained residual neural network) on a plant disease dataset sourced from **Kaggle**. It supports disease classification across **14 plant types**: Beans, Chilli, Coconut, Coffee, Cucumber, Lettuce, Mango, Onion, Potato, Rice, Sugarcane, Tobacco, Tomato, and Wheat.
+
+Each plant type has a dedicated ResNet18 model that was fine-tuned via transfer learning. When a user uploads a leaf image, the system identifies the plant, predicts the disease (or confirms the plant is healthy), reports a confidence score, and provides treatment recommendations.
+
+Beyond disease detection, the application also includes an e-commerce marketplace for agricultural products, a community blog for farmers, and user authentication.
 
 ## Prerequisites
 
@@ -122,13 +126,27 @@ Once the backend is running, visit:
 - API Docs (Swagger): `http://localhost:8000/docs`
 - Alternative API Docs (ReDoc): `http://localhost:8000/redoc`
 
+## ML Model Details
+
+| Detail | Value |
+|--------|-------|
+| Architecture | ResNet18 (Residual Network, 18 layers) |
+| Framework | PyTorch + Torchvision |
+| Training Approach | Transfer learning — pre-trained on ImageNet, fine-tuned on a Kaggle plant disease dataset |
+| Input Size | 224 x 224 pixels |
+| Normalization | ImageNet standard (mean `[0.485, 0.456, 0.406]`, std `[0.229, 0.224, 0.225]`) |
+| Supported Plants | 14 (Beans, Chilli, Coconut, Coffee, Cucumber, Lettuce, Mango, Onion, Potato, Rice, Sugarcane, Tobacco, Tomato, Wheat) |
+| Output | Disease class, confidence score, and treatment recommendations |
+
+Each plant has its own fine-tuned model (e.g., `beans_classifier.pth`) and a corresponding class-names JSON file. Models are lazily loaded and cached for performance.
+
 ## Technologies Used
 
 ### Backend
 - FastAPI
 - SQLAlchemy
 - PyMySQL
-- PyTorch & Torchvision (ML)
+- PyTorch & Torchvision (ML — ResNet18)
 - Razorpay (Payment Integration)
 - Passlib & Bcrypt (Authentication)
 
